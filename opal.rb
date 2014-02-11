@@ -1,28 +1,29 @@
-class FareSegment
-  def initialize(segment)
-    @count = segment[:count]
-    @model = segment[:model]
-    @zone = segment[:zone]
-  end
-
-  def single
-    fare_table[@mode][@zone]
-  end
-
-  def compute
-    single * @count
-  end
-end
-
 class Fare
   def initialize(data)
     @data = data
   end
 
+  def single(segment)
+    begin
+      fare_table[segment[:mode]][segment[:zone]]
+    rescue
+      raise "No fare found in class #{self.class.name} for segment #{segment}"
+    end
+  end
+
+  def compute_segment(segment)
+    single(segment) * segment[:count]
+  end
+
   def compute
-    @data.map do |segment|
-      FareSegment.new(segment).computer
-    end.sum
+    fares = @data.map do |segment|
+      compute_segment segment
+    end
+    if fares.include? nil
+      nil
+    else
+      fares.reduce(:+)
+    end
   end
 end
 
@@ -47,11 +48,10 @@ class Opal < Fare
       }
     }
   end
-end
 
-class OpalSegment < FareSegment
-  def compute
-    single * (@count > 8 ? 8 : @count)
+  def compute_segment(segment)
+    count = segment[:count]
+    single(segment) * (count > 8 ? 8 : count)
   end
 end
 
@@ -77,8 +77,8 @@ class MyMulti < Fare
     }
   end
 
-  def compute
-    fare_table[@mode][@zone]
+  def compute_segment(segment)
+    single segment
   end
 end
 
@@ -97,8 +97,8 @@ class TravelTen < Fare
     }
   end
 
-  def compute
-    if @mode == :train
+  def compute_segment(segment)
+    if segment[:mode] == :train
       nil
     else
       super
@@ -107,9 +107,9 @@ class TravelTen < Fare
 end
 
 class Weekly < Fare
-  def compute
-    if @mode == :train
-      [28, 35, 41, 52, 61][@zone - 1]
+  def compute_segment(segment)
+    if segment[:mode] == :train
+      [28, 35, 41, 52, 61][segment[:zone] - 1]
     else
       nil
     end
@@ -164,6 +164,7 @@ samples = [
 ]
 
 samples.each do |data|
+  puts data
   options = FareOptions.new(data)
   puts "Cheapest: #{options.cheapest}"
   puts "Savings over Opal: $%.02f" % options.savings
