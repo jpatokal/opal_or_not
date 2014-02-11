@@ -1,6 +1,8 @@
 class Fare
+  attr_reader :data
+
   def initialize(data)
-    @data = data
+    @data = data.sort {|a,b| a[:mode] <=> b[:mode]}
   end
 
   def single(segment)
@@ -15,10 +17,14 @@ class Fare
     single(segment) * segment[:count]
   end
 
-  def compute
-    fares = @data.map do |segment|
+  def compute_journey
+    @data.map do |segment|
       compute_segment segment
     end
+  end
+
+  def compute
+    fares = compute_journey
     if fares.include? nil
       nil
     else
@@ -49,6 +55,13 @@ class Opal < Fare
     }
   end
 
+  def compute_journey
+    # Collapse same-mode transfers, since they're free with Opal
+    @data.uniq {|a| a[:mode]}.map do |segment|
+      compute_segment segment
+    end
+  end
+
   def compute_segment(segment)
     count = segment[:count]
     single(segment) * (count > 8 ? 8 : count)
@@ -75,6 +88,13 @@ class MyMulti < Fare
         2 => 52
       }
     }
+  end
+
+  def compute_journey
+    # MyMulti option that covers most expensive single segment suffices for entire journey
+    [@data.map do |segment|
+      compute_segment segment
+    end.sort.last]
   end
 
   def compute_segment(segment)
@@ -156,16 +176,19 @@ samples = [
   [{ :mode => :ferry, :zone => 1, :count => 8 }],
   [{ :mode => :ferry, :zone => 1, :count => 9 }],
   [{ :mode => :ferry, :zone => 1, :count => 10 }],
-  [{ :mode => :ferry, :zone => 1, :count => 10 }, { :mode => :ferry, :zone => 1, :count => 10 }],
   [{ :mode => :bus,   :zone => 3, :count => 9 }],
   [{ :mode => :bus,   :zone => 3, :count => 10 }],
-  [{ :mode => :train,   :zone => 5, :count => 9 }],
-  [{ :mode => :train,   :zone => 5, :count => 10 }],
+  [{ :mode => :train, :zone => 5, :count => 9 }],
+  [{ :mode => :train, :zone => 5, :count => 10 }],
+  [{ :mode => :ferry, :zone => 1, :count => 10 }, { :mode => :ferry, :zone => 1, :count => 10 }],
+  [{ :mode => :bus,   :zone => 3, :count => 10 }, { :mode => :bus,   :zone => 3, :count => 10 }],
+  [{ :mode => :train, :zone => 3, :count => 10 }, { :mode => :bus,   :zone => 3, :count => 10 }],
 ]
 
 samples.each do |data|
   puts data
   options = FareOptions.new(data)
+  puts options.all
   puts "Cheapest: #{options.cheapest}"
   puts "Savings over Opal: $%.02f" % options.savings
 end
