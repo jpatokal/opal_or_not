@@ -1,7 +1,7 @@
 class Fare
   attr_reader :data
 
-  def initialize(data)
+  def initialize(data=[])
     @data = data.sort {|a,b| a[:mode] <=> b[:mode]}
   end
 
