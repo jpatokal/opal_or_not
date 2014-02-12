@@ -14,7 +14,8 @@ class Fare
   end
 
   def compute_segment(segment)
-    single(segment) * segment[:count]
+    # Truncate to two decimal places
+    (single(segment) * segment[:count] * 100).to_i / 100.0
   end
 
   def compute_journey

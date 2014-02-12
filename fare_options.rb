@@ -1,12 +1,16 @@
 require_relative 'fare'
 
 class FareOptions
-  def initialize(data)
-    @options = {}
+  def initialize(options={})
+    @options = options
+  end
+
+  def compute(data)
     [Opal, MyMulti, TravelTen, Weekly].each do |type|
       fare = type.new(data).compute
       @options[type.to_s] = fare if fare
     end
+    self
   end
 
   def all
