@@ -1,3 +1,3 @@
-require_relative '../opal'
+require_relative '../fare_options'
 
 require 'rr'
