@@ -1,0 +1,971 @@
+!!!
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %title Bootswatch: Readable
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{href: "../"} Bootswatch
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", type: "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li.dropdown
+              %a#themes.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Themes
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "themes"}
+                %li
+                  %a{href: "../default/"} Default
+                %li.divider
+                %li
+                  %a{href: "../amelia/"} Amelia
+                %li
+                  %a{href: "../cerulean/"} Cerulean
+                %li
+                  %a{href: "../cosmo/"} Cosmo
+                %li
+                  %a{href: "../cyborg/"} Cyborg
+                %li
+                  %a{href: "../flatly/"} Flatly
+                %li
+                  %a{href: "../journal/"} Journal
+                %li
+                  %a{href: "../lumen/"} Lumen
+                %li
+                  %a{href: "../readable/"} Readable
+                %li
+                  %a{href: "../simplex/"} Simplex
+                %li
+                  %a{href: "../slate/"} Slate
+                %li
+                  %a{href: "../spacelab/"} Spacelab
+                %li
+                  %a{href: "../superhero/"} Superhero
+                %li
+                  %a{href: "../united/"} United
+                %li
+                  %a{href: "../yeti/"} Yeti
+            %li
+              %a{href: "../help/"} Help
+            %li
+              %a{href: "http://news.bootswatch.com"} Blog
+            %li.dropdown
+              %a#download.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                Download
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "download"}
+                %li
+                  %a{href: "./bootstrap.min.css"} bootstrap.min.css
+                %li
+                  %a{href: "./bootstrap.css"} bootstrap.css
+                %li.divider
+                %li
+                  %a{href: "./variables.less"} variables.less
+                %li
+                  %a{href: "./bootswatch.less"} bootswatch.less
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              %a{href: "http://builtwithbootstrap.com/", target: "_blank"} Built With Bootstrap
+            %li
+              %a{href: "https://wrapbootstrap.com/?ref=bsw", target: "_blank"} WrapBootstrap
+    .container
+      #banner.page-header
+        .row
+          .col-lg-6
+            %h1 Readable
+            %p.lead Optimized for legibility
+          .col-lg-6
+            .bsa.well
+              #bsap_1277971.bsarocks.bsap_c466df00a3cd5ee8568b5c4983b6bb19
+      /
+        Navbar
+        \==================================================
+      .bs-docs-section.clearfix
+        .row
+          .col-lg-12
+            .page-header
+              %h1#navbar Navbar
+            .bs-example
+              .navbar.navbar-default
+                .navbar-header
+                  %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", type: "button"}
+                    %span.icon-bar
+                    %span.icon-bar
+                    %span.icon-bar
+                  %a.navbar-brand{href: "#"} Brand
+                .navbar-collapse.collapse.navbar-responsive-collapse
+                  %ul.nav.navbar-nav
+                    %li.active
+                      %a{href: "#"} Active
+                    %li
+                      %a{href: "#"} Link
+                    %li.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                        Dropdown
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "#"} Action
+                        %li
+                          %a{href: "#"} Another action
+                        %li
+                          %a{href: "#"} Something else here
+                        %li.divider
+                        %li.dropdown-header Dropdown header
+                        %li
+                          %a{href: "#"} Separated link
+                        %li
+                          %a{href: "#"} One more separated link
+                  %form.navbar-form.navbar-left
+                    %input.form-control.col-lg-8{placeholder: "Search", type: "text"}/
+                  %ul.nav.navbar-nav.navbar-right
+                    %li
+                      %a{href: "#"} Link
+                    %li.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                        Dropdown
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "#"} Action
+                        %li
+                          %a{href: "#"} Another action
+                        %li
+                          %a{href: "#"} Something else here
+                        %li.divider
+                        %li
+                          %a{href: "#"} Separated link
+                / /.nav-collapse
+              / /.navbar
+              .navbar.navbar-inverse
+                .navbar-header
+                  %button.navbar-toggle{"data-target" => ".navbar-inverse-collapse", "data-toggle" => "collapse", type: "button"}
+                    %span.icon-bar
+                    %span.icon-bar
+                    %span.icon-bar
+                  %a.navbar-brand{href: "#"} Brand
+                .navbar-collapse.collapse.navbar-inverse-collapse
+                  %ul.nav.navbar-nav
+                    %li.active
+                      %a{href: "#"} Active
+                    %li
+                      %a{href: "#"} Link
+                    %li.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                        Dropdown
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "#"} Action
+                        %li
+                          %a{href: "#"} Another action
+                        %li
+                          %a{href: "#"} Something else here
+                        %li.divider
+                        %li.dropdown-header Dropdown header
+                        %li
+                          %a{href: "#"} Separated link
+                        %li
+                          %a{href: "#"} One more separated link
+                  %form.navbar-form.navbar-left
+                    %input.form-control.col-lg-8{placeholder: "Search", type: "text"}/
+                  %ul.nav.navbar-nav.navbar-right
+                    %li
+                      %a{href: "#"} Link
+                    %li.dropdown
+                      %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                        Dropdown
+                        %b.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{href: "#"} Action
+                        %li
+                          %a{href: "#"} Another action
+                        %li
+                          %a{href: "#"} Something else here
+                        %li.divider
+                        %li
+                          %a{href: "#"} Separated link
+                / /.nav-collapse
+              / /.navbar
+            / /example
+      /
+        Buttons
+        \==================================================
+      .bs-docs-section
+        .page-header
+          .row
+            .col-lg-12
+              %h1#buttons Buttons
+        .row
+          .col-lg-6
+            .bs-example
+              %p
+                %button.btn.btn-default{type: "button"} Default
+                %button.btn.btn-primary{type: "button"} Primary
+                %button.btn.btn-success{type: "button"} Success
+                %button.btn.btn-info{type: "button"} Info
+                %button.btn.btn-warning{type: "button"} Warning
+                %button.btn.btn-danger{type: "button"} Danger
+                %button.btn.btn-link{type: "button"} Link
+            .bs-example
+              %p
+                %button.btn.btn-default.disabled{type: "button"} Default
+                %button.btn.btn-primary.disabled{type: "button"} Primary
+                %button.btn.btn-success.disabled{type: "button"} Success
+                %button.btn.btn-info.disabled{type: "button"} Info
+                %button.btn.btn-warning.disabled{type: "button"} Warning
+                %button.btn.btn-danger.disabled{type: "button"} Danger
+                %button.btn.btn-link.disabled{type: "button"} Link
+            .bs-example{style: "margin-bottom: 15px;"}
+              .btn-toolbar{style: "margin: 0;"}
+                .btn-group
+                  %button.btn.btn-default{type: "button"} Default
+                  %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+                / /btn-group
+                .btn-group
+                  %button.btn.btn-primary{type: "button"} Primary
+                  %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+                / /btn-group
+                .btn-group
+                  %button.btn.btn-success{type: "button"} Success
+                  %button.btn.btn-success.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+                / /btn-group
+                .btn-group
+                  %button.btn.btn-info{type: "button"} Info
+                  %button.btn.btn-info.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+                / /btn-group
+                .btn-group
+                  %button.btn.btn-warning{type: "button"} Warning
+                  %button.btn.btn-warning.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+                / /btn-group
+              / /btn-toolbar
+            .bs-example
+              %p
+                %button.btn.btn-primary.btn-lg{type: "button"} Large button
+                %button.btn.btn-primary{type: "button"} Default button
+                %button.btn.btn-primary.btn-sm{type: "button"} Small button
+                %button.btn.btn-primary.btn-xs{type: "button"} Mini button
+          .col-lg-6
+            .bs-example
+              %p
+                %button.btn.btn-default.btn-lg.btn-block{type: "button"} Block level button
+            .bs-example{style: "margin-bottom: 15px;"}
+              .btn-group.btn-group-justified
+                %a.btn.btn-default{href: "#"} Left
+                %a.btn.btn-default{href: "#"} Middle
+                %a.btn.btn-default{href: "#"} Right
+            .bs-example{style: "margin-bottom: 15px;"}
+              .btn-toolbar
+                .btn-group
+                  %button.btn.btn-default{type: "button"} 1
+                  %button.btn.btn-default{type: "button"} 2
+                  %button.btn.btn-default{type: "button"} 3
+                  %button.btn.btn-default{type: "button"} 4
+                .btn-group
+                  %button.btn.btn-default{type: "button"} 5
+                  %button.btn.btn-default{type: "button"} 6
+                  %button.btn.btn-default{type: "button"} 7
+                .btn-group
+                  %button.btn.btn-default{type: "button"} 8
+                  .btn-group
+                    %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
+                      Dropdown
+                      %span.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{href: "#"} Dropdown link
+                      %li
+                        %a{href: "#"} Dropdown link
+                      %li
+                        %a{href: "#"} Dropdown link
+            .bs-example
+              .btn-group-vertical
+                %button.btn.btn-default{type: "button"} Button
+                %button.btn.btn-default{type: "button"} Button
+                %button.btn.btn-default{type: "button"} Button
+                %button.btn.btn-default{type: "button"} Button
+      /
+        Typography
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#type Typography
+        / Headings
+        .row
+          .col-lg-4
+            .bs-example.bs-example-type
+              %h1 Heading 1
+              %h2 Heading 2
+              %h3 Heading 3
+              %h4 Heading 4
+              %h5 Heading 5
+              %h6 Heading 6
+            .bs-example
+              %p.lead Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          .col-lg-4
+            .bs-example
+              %h2 Example body text
+              %p
+                Nullam quis risus eget
+                %a{href: "#"} urna mollis ornare
+                vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
+              %p
+                %small This line of text is meant to be treated as fine print.
+              %p
+                The following snippet of text is
+                = succeed "." do
+                  %strong rendered as bold text
+              %p
+                The following snippet of text is
+                = succeed "." do
+                  %em rendered as italicized text
+              %p
+                An abbreviation of the word attribute is
+                = succeed "." do
+                  %abbr{title: "attribute"} attr
+          .col-lg-4
+            %h2 Emphasis classes
+            .bs-example
+              %p.text-muted Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.
+              %p.text-primary Nullam id dolor id nibh ultricies vehicula ut id elit.
+              %p.text-warning Etiam porta sem malesuada magna mollis euismod.
+              %p.text-danger Donec ullamcorper nulla non metus auctor fringilla.
+              %p.text-success Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              %p.text-info Maecenas sed diam eget risus varius blandit sit amet non magna.
+        / Blockquotes
+        .row
+          .col-lg-12
+            %h2#type-blockquotes Blockquotes
+        .row
+          .col-lg-6
+            %blockquote
+              %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+              %small
+                Someone famous in
+                %cite{title: "Source Title"} Source Title
+          .col-lg-6
+            %blockquote.pull-right
+              %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
+              %small
+                Someone famous in
+                %cite{title: "Source Title"} Source Title
+      /
+        Tables
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#tables Tables
+            .bs-example.table-responsive
+              %table.table.table-striped.table-hover
+                %tr
+                  %th #
+                  %th Column heading
+                  %th Column heading
+                  %th Column heading
+                %tr
+                  %td 1
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 2
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr
+                  %td 3
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr.success
+                  %td 4
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr.danger
+                  %td 5
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr.warning
+                  %td 6
+                  %td Column content
+                  %td Column content
+                  %td Column content
+                %tr.active
+                  %td 7
+                  %td Column content
+                  %td Column content
+                  %td Column content
+            / /example
+      /
+        Forms
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#forms Forms
+        .row
+          .col-lg-6
+            .well
+              %form.bs-example.form-horizontal
+                %fieldset
+                  %legend Legend
+                  .form-group
+                    %label.col-lg-2.control-label{for: "inputEmail"} Email
+                    .col-lg-10
+                      %input#inputEmail.form-control{placeholder: "Email", type: "text"}/
+                  .form-group
+                    %label.col-lg-2.control-label{for: "inputPassword"} Password
+                    .col-lg-10
+                      %input#inputPassword.form-control{placeholder: "Password", type: "password"}/
+                      .checkbox
+                        %label
+                          %input{type: "checkbox"}/
+                          Checkbox
+                  .form-group
+                    %label.col-lg-2.control-label{for: "textArea"} Textarea
+                    .col-lg-10
+                      %textarea#textArea.form-control{rows: "3"}
+                      %span.help-block A longer block of help text that breaks onto a new line and may extend beyond one line.
+                  .form-group
+                    %label.col-lg-2.control-label Radios
+                    .col-lg-10
+                      .radio
+                        %label
+                          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
+                          Option one is this
+                      .radio
+                        %label
+                          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
+                          Option two can be something else
+                  .form-group
+                    %label.col-lg-2.control-label{for: "select"} Selects
+                    .col-lg-10
+                      %select#select.form-control
+                        %option 1
+                        %option 2
+                        %option 3
+                        %option 4
+                        %option 5
+                      %br/
+                      %select.form-control{multiple: "multiple"}
+                        %option 1
+                        %option 2
+                        %option 3
+                        %option 4
+                        %option 5
+                  .form-group
+                    .col-lg-10.col-lg-offset-2
+                      %button.btn.btn-default Cancel
+                      %button.btn.btn-primary{type: "submit"} Submit
+          .col-lg-4.col-lg-offset-1
+            %form.bs-example
+              .form-group
+                %label.control-label{for: "focusedInput"} Focused input
+                %input#focusedInput.form-control{type: "text", value: "This is focused..."}/
+              .form-group
+                %label.control-label{for: "disabledInput"} Disabled input
+                %input#disabledInput.form-control{disabled: "disabled", placeholder: "Disabled input here...", type: "text"}/
+              .form-group.has-warning
+                %label.control-label{for: "inputWarning"} Input warning
+                %input#inputWarning.form-control{type: "text"}/
+              .form-group.has-error
+                %label.control-label{for: "inputError"} Input error
+                %input#inputError.form-control{type: "text"}/
+              .form-group.has-success
+                %label.control-label{for: "inputSuccess"} Input success
+                %input#inputSuccess.form-control{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputLarge"} Large input
+                %input#inputLarge.form-control.input-lg{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputDefault"} Default input
+                %input#inputDefault.form-control{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputSmall"} Small input
+                %input#inputSmall.form-control.input-sm{type: "text"}/
+              .form-group
+                %label.control-label Input addons
+                .input-group
+                  %span.input-group-addon $
+                  %input.form-control{type: "text"}/
+                  %span.input-group-btn
+                    %button.btn.btn-default{type: "button"} Button
+      /
+        Navs
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#nav Navs
+        .row
+          .col-lg-4
+            %h2#nav-tabs Tabs
+            .bs-example
+              %ul.nav.nav-tabs{style: "margin-bottom: 15px;"}
+                %li.active
+                  %a{"data-toggle" => "tab", href: "#home"} Home
+                %li
+                  %a{"data-toggle" => "tab", href: "#profile"} Profile
+                %li.disabled
+                  %a Disabled
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                    Dropdown
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{"data-toggle" => "tab", href: "#dropdown1"} Action
+                    %li.divider
+                    %li
+                      %a{"data-toggle" => "tab", href: "#dropdown2"} Another action
+              #myTabContent.tab-content
+                #home.tab-pane.fade.active.in
+                  %p Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                #profile.tab-pane.fade
+                  %p Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.
+                #dropdown1.tab-pane.fade
+                  %p Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.
+                #dropdown2.tab-pane.fade
+                  %p Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.
+          .col-lg-4
+            %h2#nav-pills Pills
+            .bs-example
+              %ul.nav.nav-pills
+                %li.active
+                  %a{href: "#"} Home
+                %li
+                  %a{href: "#"} Profile
+                %li.disabled
+                  %a{href: "#"} Disabled
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                    Dropdown
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+            %br/
+            .bs-example
+              %ul.nav.nav-pills.nav-stacked{style: "max-width: 300px;"}
+                %li.active
+                  %a{href: "#"} Home
+                %li
+                  %a{href: "#"} Profile
+                %li.disabled
+                  %a{href: "#"} Disabled
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+                    Dropdown
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{href: "#"} Action
+                    %li
+                      %a{href: "#"} Another action
+                    %li
+                      %a{href: "#"} Something else here
+                    %li.divider
+                    %li
+                      %a{href: "#"} Separated link
+          .col-lg-4
+            %h2#nav-breadcrumbs Breadcrumbs
+            .bs-example
+              %ul.breadcrumb
+                %li.active Home
+              %ul.breadcrumb
+                %li
+                  %a{href: "#"} Home
+                %li.active Library
+              %ul.breadcrumb{style: "margin-bottom: 5px;"}
+                %li
+                  %a{href: "#"} Home
+                %li
+                  %a{href: "#"} Library
+                %li.active Data
+        .row
+          .col-lg-4
+            %h2#pagination Pagination
+            .bs-example
+              %ul.pagination
+                %li.disabled
+                  %a{href: "#"} «
+                %li.active
+                  %a{href: "#"} 1
+                %li
+                  %a{href: "#"} 2
+                %li
+                  %a{href: "#"} 3
+                %li
+                  %a{href: "#"} 4
+                %li
+                  %a{href: "#"} 5
+                %li
+                  %a{href: "#"} »
+              %ul.pagination.pagination-lg
+                %li.disabled
+                  %a{href: "#"} «
+                %li.active
+                  %a{href: "#"} 1
+                %li
+                  %a{href: "#"} 2
+                %li
+                  %a{href: "#"} 3
+                %li
+                  %a{href: "#"} »
+              %ul.pagination.pagination-sm
+                %li.disabled
+                  %a{href: "#"} «
+                %li.active
+                  %a{href: "#"} 1
+                %li
+                  %a{href: "#"} 2
+                %li
+                  %a{href: "#"} 3
+                %li
+                  %a{href: "#"} 4
+                %li
+                  %a{href: "#"} 5
+                %li
+                  %a{href: "#"} »
+          .col-lg-4
+            %h2#pager Pager
+            .bs-example
+              %ul.pager
+                %li
+                  %a{href: "#"} Previous
+                %li
+                  %a{href: "#"} Next
+            .bs-example
+              %ul.pager
+                %li.previous.disabled
+                  %a{href: "#"} ← Older
+                %li.next
+                  %a{href: "#"} Newer →
+          .col-lg-4
+      /
+        Indicators
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#indicators Indicators
+        .row
+          .col-lg-12
+            %h2 Alerts
+            .bs-example
+              .alert.alert-dismissable.alert-warning
+                %button.close{"data-dismiss" => "alert", type: "button"} ×
+                %h4 Warning!
+                %p
+                  Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna,
+                  = succeed "." do
+                    %a.alert-link{href: "#"} vel scelerisque nisl consectetur et
+        .row
+          .col-lg-4
+            .alert.alert-dismissable.alert-danger
+              %button.close{"data-dismiss" => "alert", type: "button"} ×
+              %strong Oh snap!
+              %a.alert-link{href: "#"} Change a few things up
+              and try submitting again.
+          .col-lg-4
+            .alert.alert-dismissable.alert-success
+              %button.close{"data-dismiss" => "alert", type: "button"} ×
+              %strong Well done!
+              You successfully read
+              = succeed "." do
+                %a.alert-link{href: "#"} this important alert message
+          .col-lg-4
+            .alert.alert-dismissable.alert-info
+              %button.close{"data-dismiss" => "alert", type: "button"} ×
+              %strong Heads up!
+              This
+              = succeed "," do
+                %a.alert-link{href: "#"} alert needs your attention
+        .row
+          .col-lg-4
+            %h2 Labels
+            .bs-example{style: "margin-bottom: 40px;"}
+              %span.label.label-default Default
+              %span.label.label-primary Primary
+              %span.label.label-success Success
+              %span.label.label-warning Warning
+              %span.label.label-danger Danger
+              %span.label.label-info Info
+          .col-lg-4
+            %h2 Badges
+            .bs-example
+              %ul.nav.nav-pills
+                %li.active
+                  %a{href: "#"}
+                    Home
+                    %span.badge 42
+                %li
+                  %a{href: "#"}
+                    Profile
+                    %span.badge
+                %li
+                  %a{href: "#"}
+                    Messages
+                    %span.badge 3
+      /
+        Progress bars
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#progress Progress bars
+            %h3#progress-basic Basic
+            .bs-example
+              .progress
+                .progress-bar{style: "width: 60%;"}
+            %h3#progress-alternatives Contextual alternatives
+            .bs-example
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-info{style: "width: 20%"}
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-success{style: "width: 40%"}
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-warning{style: "width: 60%"}
+              .progress
+                .progress-bar.progress-bar-danger{style: "width: 80%"}
+            %h3#progress-striped Striped
+            .bs-example
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-info{style: "width: 20%"}
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-success{style: "width: 40%"}
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-warning{style: "width: 60%"}
+              .progress.progress-striped
+                .progress-bar.progress-bar-danger{style: "width: 80%"}
+            %h3#progress-animated Animated
+            .bs-example
+              .progress.progress-striped.active
+                .progress-bar{style: "width: 45%"}
+            %h3#progress-stacked Stacked
+            .bs-example
+              .progress
+                .progress-bar.progress-bar-success{style: "width: 35%"}
+                .progress-bar.progress-bar-warning{style: "width: 20%"}
+                .progress-bar.progress-bar-danger{style: "width: 10%"}
+      /
+        Containers
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#container Containers
+            .bs-example
+              .jumbotron
+                %h1 Jumbotron
+                %p This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+                %p
+                  %a.btn.btn-primary.btn-lg Learn more
+        .row
+          .col-lg-12
+            %h2 List groups
+        .row
+          .col-lg-4
+            .bs-example
+              %ul.list-group
+                %li.list-group-item
+                  %span.badge 14
+                  Cras justo odio
+                %li.list-group-item
+                  %span.badge 2
+                  Dapibus ac facilisis in
+                %li.list-group-item
+                  %span.badge 1
+                  Morbi leo risus
+          .col-lg-4
+            .bs-example
+              .list-group
+                %a.list-group-item.active{href: "#"}
+                  Cras justo odio
+                %a.list-group-item{href: "#"}
+                  Dapibus ac facilisis in
+                %a.list-group-item{href: "#"}
+                  Morbi leo risus
+          .col-lg-4
+            .bs-example
+              .list-group
+                %a.list-group-item{href: "#"}
+                  %h4.list-group-item-heading List group item heading
+                  %p.list-group-item-text Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+                %a.list-group-item{href: "#"}
+                  %h4.list-group-item-heading List group item heading
+                  %p.list-group-item-text Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+        .row
+          .col-lg-12
+            %h2 Panels
+        .row
+          .col-lg-4
+            .panel.panel-default
+              .panel-body
+                Basic panel
+            .panel.panel-default
+              .panel-heading Panel heading
+              .panel-body
+                Panel content
+            .panel.panel-default
+              .panel-body
+                Panel content
+              .panel-footer Panel footer
+          .col-lg-4
+            .panel.panel-primary
+              .panel-heading
+                %h3.panel-title Panel primary
+              .panel-body
+                Panel content
+            .panel.panel-success
+              .panel-heading
+                %h3.panel-title Panel success
+              .panel-body
+                Panel content
+            .panel.panel-warning
+              .panel-heading
+                %h3.panel-title Panel warning
+              .panel-body
+                Panel content
+          .col-lg-4
+            .panel.panel-danger
+              .panel-heading
+                %h3.panel-title Panel danger
+              .panel-body
+                Panel content
+            .panel.panel-info
+              .panel-heading
+                %h3.panel-title Panel info
+              .panel-body
+                Panel content
+        .row
+          .col-lg-12
+            %h2 Wells
+        .row
+          .col-lg-4
+            .well
+              Look, I'm in a well!
+          .col-lg-4
+            .well.well-sm
+              Look, I'm in a small well!
+          .col-lg-4
+            .well.well-lg
+              Look, I'm in a large well!
+      %footer
+        .row
+          .col-lg-12
+            %ul.list-unstyled
+              %li.pull-right
+                %a{href: "#top"} Back to top
+              %li
+                %a{href: "http://news.bootswatch.com", onclick: "pageTracker._link(this.href); return false;"} Blog
+              %li
+                %a{href: "http://feeds.feedburner.com/bootswatch"} RSS
+              %li
+                %a{href: "https://twitter.com/thomashpark"} Twitter
+              %li
+                %a{href: "https://github.com/thomaspark/bootswatch/"} GitHub
+              %li
+                %a{href: "../help/#api"} API
+              %li
+                %a{href: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F22JEM3Q78JC2"} Donate
+            %p
+              Made by
+              = succeed "." do
+                %a{href: "http://thomaspark.me", rel: "nofollow"} Thomas Park
+              = succeed "." do
+                %a{href: "mailto:hello@thomaspark.me"} hello@thomaspark.me
+            %p
+              Code released under the
+              = succeed "." do
+                %a{href: "https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE"} MIT License
+            %p
+              Based on
+              = succeed "." do
+                %a{href: "http://getbootstrap.com", rel: "nofollow"} Bootstrap
+              = succeed "." do
+                %a{href: "http://fortawesome.github.io/Font-Awesome/", rel: "nofollow"} Font Awesome
+              = succeed "." do
+                %a{href: "http://www.google.com/webfonts", rel: "nofollow"} Google
+    %script{src: "https://code.jquery.com/jquery-1.10.2.min.js"}

@@ -1,0 +1,193 @@
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %title Opal or Not
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
+  %body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          %a.navbar-brand{href: "../"} Opal or Not
+          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", type: "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+        #navbar-main.navbar-collapse.collapse
+          %ul.nav.navbar-nav
+            %li
+              %a{href: "faq"} FAQ
+            %li
+              %a{href: "blog"} Blog
+    .container
+      #banner.page-header
+        .row
+          .col-lg-6
+            %h1 Opal or Not?
+            %p.lead Find out if Sydney's new transport smartcard will cost you more.
+
+      /
+        Forms
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#forms Forms
+        .row
+          .col-lg-6
+            .well
+              %form.bs-example.form-horizontal
+                %fieldset
+                  %legend Legend
+                  .form-group
+                    %label.col-lg-2.control-label{for: "inputEmail"} Email
+                    .col-lg-10
+                      %input#inputEmail.form-control{placeholder: "Email", type: "text"}/
+                  .form-group
+                    %label.col-lg-2.control-label{for: "inputPassword"} Password
+                    .col-lg-10
+                      %input#inputPassword.form-control{placeholder: "Password", type: "password"}/
+                      .checkbox
+                        %label
+                          %input{type: "checkbox"}/
+                          Checkbox
+                  .form-group
+                    %label.col-lg-2.control-label{for: "textArea"} Textarea
+                    .col-lg-10
+                      %textarea#textArea.form-control{rows: "3"}
+                      %span.help-block A longer block of help text that breaks onto a new line and may extend beyond one line.
+                  .form-group
+                    %label.col-lg-2.control-label Radios
+                    .col-lg-10
+                      .radio
+                        %label
+                          %input#optionsRadios1{checked: "checked", name: "optionsRadios", type: "radio", value: "option1"}/
+                          Option one is this
+                      .radio
+                        %label
+                          %input#optionsRadios2{name: "optionsRadios", type: "radio", value: "option2"}/
+                          Option two can be something else
+                  .form-group
+                    %label.col-lg-2.control-label{for: "select"} Selects
+                    .col-lg-10
+                      %select#select.form-control
+                        %option 1
+                        %option 2
+                        %option 3
+                        %option 4
+                        %option 5
+                      %br/
+                      %select.form-control{multiple: "multiple"}
+                        %option 1
+                        %option 2
+                        %option 3
+                        %option 4
+                        %option 5
+                  .form-group
+                    .col-lg-10.col-lg-offset-2
+                      %button.btn.btn-default Cancel
+                      %button.btn.btn-primary{type: "submit"} Submit
+          .col-lg-4.col-lg-offset-1
+            %form.bs-example
+              .form-group
+                %label.control-label{for: "focusedInput"} Focused input
+                %input#focusedInput.form-control{type: "text", value: "This is focused..."}/
+              .form-group
+                %label.control-label{for: "disabledInput"} Disabled input
+                %input#disabledInput.form-control{disabled: "disabled", placeholder: "Disabled input here...", type: "text"}/
+              .form-group.has-warning
+                %label.control-label{for: "inputWarning"} Input warning
+                %input#inputWarning.form-control{type: "text"}/
+              .form-group.has-error
+                %label.control-label{for: "inputError"} Input error
+                %input#inputError.form-control{type: "text"}/
+              .form-group.has-success
+                %label.control-label{for: "inputSuccess"} Input success
+                %input#inputSuccess.form-control{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputLarge"} Large input
+                %input#inputLarge.form-control.input-lg{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputDefault"} Default input
+                %input#inputDefault.form-control{type: "text"}/
+              .form-group
+                %label.control-label{for: "inputSmall"} Small input
+                %input#inputSmall.form-control.input-sm{type: "text"}/
+              .form-group
+                %label.control-label Input addons
+                .input-group
+                  %span.input-group-addon $
+                  %input.form-control{type: "text"}/
+                  %span.input-group-btn
+                    %button.btn.btn-default{type: "button"} Button
+
+      /
+        Progress bars
+        \==================================================
+      .bs-docs-section
+        .row
+          .col-lg-12
+            .page-header
+              %h1#progress Progress bars
+            %h3#progress-basic Basic
+            .bs-example
+              .progress
+                .progress-bar{style: "width: 60%;"}
+            %h3#progress-alternatives Contextual alternatives
+            .bs-example
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-info{style: "width: 20%"}
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-success{style: "width: 40%"}
+              .progress{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-warning{style: "width: 60%"}
+              .progress
+                .progress-bar.progress-bar-danger{style: "width: 80%"}
+            %h3#progress-striped Striped
+            .bs-example
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-info{style: "width: 20%"}
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-success{style: "width: 40%"}
+              .progress.progress-striped{style: "margin-bottom: 9px;"}
+                .progress-bar.progress-bar-warning{style: "width: 60%"}
+              .progress.progress-striped
+                .progress-bar.progress-bar-danger{style: "width: 80%"}
+            %h3#progress-animated Animated
+            .bs-example
+              .progress.progress-striped.active
+                .progress-bar{style: "width: 45%"}
+            %h3#progress-stacked Stacked
+            .bs-example
+              .progress
+                .progress-bar.progress-bar-success{style: "width: 35%"}
+                .progress-bar.progress-bar-warning{style: "width: 20%"}
+                .progress-bar.progress-bar-danger{style: "width: 10%"}
+      %footer
+        .row
+          .col-lg-12
+            %h2 Disclaimer
+            %p
+              Opal, TravelTen, MyMulti and other trademarks referred to within this site are the property of
+              = succeed "." do
+                %a{href: "http://www.transport.nsw.gov.au"} Transport for NSW
+            %p
+              Opal or Not is not associated with or approved by Transport for NSW.  All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
+            %p
+              Made by
+              = succeed "." do
+                %a{href: "http://contentshare.sg"} Contentshare
+            %p
+              Code released under the
+              = succeed "." do
+                %a{href: "https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE"} MIT License
+            %p
+              Based on
+              = succeed "." do
+                %a{href: "http://getbootstrap.com", rel: "nofollow"} Bootstrap
+              = succeed "." do
+                %a{href: "http://fortawesome.github.io/Font-Awesome/", rel: "nofollow"} Font Awesome
+              = succeed "." do
+                %a{href: "http://www.google.com/webfonts", rel: "nofollow"} Google
+    %script{src: "https://code.jquery.com/jquery-1.10.2.min.js"}
