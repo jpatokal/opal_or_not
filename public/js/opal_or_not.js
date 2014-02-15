@@ -18,7 +18,6 @@ $('form').on('click', 'button.compare', function() {
       "zone": $('form .segment-1 .zone').val(),
       "count": $('form .count').val() }
   ];
-  console.log(! $('.segment-2').hasClass('hidden'));
   if(! $('.segment-2').hasClass('hidden')) {
     data.push({
       "mode": $('form .segment-2 .mode').val(),
@@ -26,13 +25,15 @@ $('form').on('click', 'button.compare', function() {
       "count": $('form .count').val()
     });
   }
-  console.log(JSON.stringify(data));
+  tripData = JSON.stringify(data);
+  console.log(tripData);
 
-  setTimeout(function() {
-    $('.spinner').addClass('hidden');
-    $('.results').removeClass('hidden');
-    drawChart();
-  }, 1000);
+  $.post("/compute", tripData).done( function(data) {
+      console.log("IN ", data)
+      $('.spinner').addClass('hidden');
+      $('.results').removeClass('hidden');
+      drawChart(data.chart);
+    });
 });
 
 function initChart() {
@@ -56,7 +57,7 @@ function initChart() {
   $('.results').addClass('hidden');
 }
 
-function drawChart() {
+function drawChart(data) {
   var data = google.visualization.arrayToDataTable([
     ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
     ['Opal', 28.94, 'gray', '$28.94' ],

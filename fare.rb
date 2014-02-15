@@ -2,6 +2,13 @@ class Fare
   attr_reader :data
 
   def initialize(data=[])
+    data = data.map do |hash|
+      hash = hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      [:count, :zone].each do |key|
+        hash[key] = hash[key].to_i if hash[key]
+      end
+      hash
+    end
     @data = data.sort {|a,b| a[:mode] <=> b[:mode]}
   end
 
@@ -37,19 +44,19 @@ end
 class Opal < Fare
   def fare_table
     {
-      :bus => {
+      "bus" => {
         1 => 2.10,
         2 => 3.50,
         3 => 4.50
       },
-      :train => {
+      "train" => {
         1 => 3.30,
         2 => 4.10,
         3 => 4.70,
         4 => 6.30,
         5 => 8.10
       },
-      :ferry => {
+      "ferry" => {
         1 => 5.60,
         2 => 7.00
       }
@@ -72,19 +79,19 @@ end
 class MyMulti < Fare
   def fare_table
     {
-      :bus => {
+      "bus" => {
         1 => 44,
         2 => 44,
         3 => 44
       },
-      :train => {
+      "train" => {
         1 => 44,
         2 => 44,
         3 => 52,
         4 => 52,
         5 => 61
       },
-      :ferry => {
+      "ferry" => {
         1 => 52,
         2 => 52
       }
@@ -106,12 +113,12 @@ end
 class TravelTen < Fare
   def fare_table
     {
-      :bus => {
+      "bus" => {
         1 => 1.84,
         2 => 2.96,
         3 => 3.68
       },
-      :ferry => {
+      "ferry" => {
         1 => 4.80,
         2 => 5.92
       }
@@ -119,7 +126,7 @@ class TravelTen < Fare
   end
 
   def compute_segment(segment)
-    if segment[:mode] == :train
+    if segment[:mode] == "train"
       nil
     else
       super
@@ -129,7 +136,7 @@ end
 
 class Weekly < Fare
   def compute_segment(segment)
-    if segment[:mode] == :train
+    if segment[:mode] == "train"
       [28, 35, 41, 52, 61][segment[:zone] - 1]
     else
       nil
