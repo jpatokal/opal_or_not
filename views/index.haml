@@ -93,17 +93,17 @@
       .bs-docs-section.spinner.hidden
         .row
           .col-lg-12
-            %h3#progress-alternatives
+            %p.lead
               Comparing...
               %i.fa.fa-spinner.fa-spin
 
-      .bs-docs-section.results.hidden
+      .bs-docs-section.results
         .row
           .col-lg-12
-            %h3
+            %p.lead{style: "margin-bottom:0px"}
               %span.text-primary
                 Opal?
-              No pal!
+              No, pal.
               %br/
               Using
               %span.text-success
@@ -111,59 +111,23 @@
               instead of
               would save you $23.44 every week, or $523.44 in a year.
         .row
-          .col-md-10.col-md-offset-2
-            %h3
-        .row{style: "margin-top: 9px;"}
-          .col-lg-2
-            %p.text-right Opal
-          .col-lg-8
-            .progress{style: "margin-bottom: 9px;"}
-              .progress-bar.progress-bar-info{style: "width: 80%"}
-          .col-lg-2
-            %p $40.56
-        .row
-          .col-lg-2
-            %p.text-right MyMulti
-          .col-lg-8
-            .progress{style: "margin-bottom: 9px;"}
-              .progress-bar.progress-bar-warning{style: "width: 60%"}
-          .col-lg-2
-            %p $30.56
-        .row
-          .col-lg-2
-            %p.text-right TravelTen
-          .col-lg-8
-            .progress.progress-striped.active{style: "margin-bottom: 9px;"}
-              .progress-bar.progress-bar-success{style: "width: 20%"}
-          .col-lg-2
-            %p
-              $17.56
-              %span.glyphicon.glyphicon-ok
-        .row
-          .col-lg-2
-            %p.text-right Weekly
-          .col-lg-8
-            .progress{style: "margin-bottom: 9px;"}
-              .progress-bar.progress-bar-danger{style: "width: 50%"}
-          .col-lg-2
-            %p $20.56
-
+          #bar-chart.col-lg-12{style: "height: 200px"}
         .row
           .col-lg-12
-            %h3
+            %p.lead
               Not using Opal has already saved 123 people $1500. Spread the word.
 
       %footer
         .row
           .col-lg-12
-            %h2 Disclaimer
+            %h4 Disclaimer
             %p
               Opal, TravelTen, MyMulti and other trademarks referred to within this site are the property of
               = succeed "." do
                 %a{href: "http://www.transport.nsw.gov.au"} Transport for NSW
             %p
               Opal or Not is not associated with or approved by Transport for NSW.  All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
-            %h2 Credits
+            %h4 Credits
             %p
               Made by
               = succeed "." do
@@ -182,9 +146,10 @@
                 %a{href: "http://haml.info/"} Haml
               = succeed "," do
                 %a{href: "http://getbootstrap.com"} Bootstrap
+              = succeed "." do
+                %a{href: "https://developers.google.com/chart/"} Google Charts
               = succeed "," do
                 %a{href: "http://fortawesome.github.io/Font-Awesome/"} Font Awesome
-              = succeed "." do
-                %a{href: "http://www.google.com/webfonts"} Google Webfonts
     %script{src: "vendor/jquery-1.9.1.min.js"}
+    %script{src: "https://www.google.com/jsapi"}
     %script{src: "js//opal_or_not.js"}
