@@ -4,6 +4,8 @@
     %title Opal or Not
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
     %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel: "stylesheet"}/
+
   %body
     .navbar.navbar-default.navbar-fixed-top
       .container
@@ -34,7 +36,7 @@
             %fieldset
               .form-group
                 .col-md-2.col-md-offset-1
-                  %select.form-control
+                  %select.count.form-control
                     %option{value: 2} One
                     %option{value: 4} Two
                     %option{value: 6} Three
@@ -42,86 +44,115 @@
                     %option{value: 10, selected: "true"} Five
                     %option{value: 12} Six
                     %option{value: 14} Seven
-                %label.col-md-8.control-label{for: "inputType", style: "text-align:left"} days a week,
+                %label.col-md-8.control-label{style: "text-align:left"} days a week,
 
-              .form-group
-                %label.col-md-2.col-md-offset-1.control-label{for: "inputType"} I travel by
+              .form-group.segment-1
+                %label.col-md-2.col-md-offset-1.control-label I travel by
                 .col-md-2
-                  %select#select.form-control
+                  %select.mode.form-control
                     %option bus
                     %option ferry
                     %option{selected: "true"} train
 
-                %label.col-md-1.control-label{for: "inputType"} in&nbsp;zone
+                %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
-                  %select#select.form-control
+                  %select.zone.form-control
                     %option 1
                     %option 2
                     %option 3
 
-              .form-group.transfer-div.hidden
-                %label.col-md-2.col-md-offset-1.control-label{for: "inputType"} and
+              .form-group.segment-2.hidden
+                %label.col-md-2.col-md-offset-1.control-label and
                 .col-md-2
-                  %select#select.form-control
+                  %select.mode.form-control
                     %option{selected: "true"} bus
                     %option ferry
                     %option train
 
-                %label.col-md-1.control-label{for: "inputType"} in&nbsp;zone
+                %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
-                  %select#select.form-control
+                  %select.zone.form-control
                     %option 1
                     %option 2
                     %option 3
               .form-group
                 .col-md-2.col-md-offset-3
-                  %button.btn.add.transfer Add transfer
-                  %button.btn.remove.transfer.hidden Remove transfer
-              .form-group
-                .col-md-2.col-md-offset-8
-                  %button.btn.btn-primary.btn-lg.btn-compare{type: "submit"} Compare fares
+                  %button.btn.add.transfer
+                    %span.glyphicon.glyphicon-chevron-down
+                    Add transfer
+                  %button.btn.remove.transfer.hidden
+                    %span.glyphicon.glyphicon-chevron-up
+                    Remove transfer
+                .col-md-2.col-md-offset-3
+                  %button.btn.btn-primary.btn-lg.compare
+                    %span.glyphicon.glyphicon-search
+                    Compare fares
       /
         Progress bars
         \==================================================
-      .bs-docs-section
+      .bs-docs-section.spinner.hidden
         .row
           .col-lg-12
-            .page-header
-              %h1#progress Progress bars
-            %h3#progress-basic Basic
-            .bs-example
-              .progress
-                .progress-bar{style: "width: 60%;"}
-            %h3#progress-alternatives Contextual alternatives
-            .bs-example
-              .progress{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-info{style: "width: 20%"}
-              .progress{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-success{style: "width: 40%"}
-              .progress{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-warning{style: "width: 60%"}
-              .progress
-                .progress-bar.progress-bar-danger{style: "width: 80%"}
-            %h3#progress-striped Striped
-            .bs-example
-              .progress.progress-striped{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-info{style: "width: 20%"}
-              .progress.progress-striped{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-success{style: "width: 40%"}
-              .progress.progress-striped{style: "margin-bottom: 9px;"}
-                .progress-bar.progress-bar-warning{style: "width: 60%"}
-              .progress.progress-striped
-                .progress-bar.progress-bar-danger{style: "width: 80%"}
-            %h3#progress-animated Animated
-            .bs-example
-              .progress.progress-striped.active
-                .progress-bar{style: "width: 45%"}
-            %h3#progress-stacked Stacked
-            .bs-example
-              .progress
-                .progress-bar.progress-bar-success{style: "width: 35%"}
-                .progress-bar.progress-bar-warning{style: "width: 20%"}
-                .progress-bar.progress-bar-danger{style: "width: 10%"}
+            %h3#progress-alternatives
+              Comparing...
+              %i.fa.fa-spinner.fa-spin
+
+      .bs-docs-section.results.hidden
+        .row
+          .col-lg-12
+            %h3
+              %span.text-primary
+                Opal?
+              No pal!
+              %br/
+              Using
+              %span.text-success
+                TravelTen
+              instead of
+              would save you $23.44 every week, or $523.44 in a year.
+        .row
+          .col-md-10.col-md-offset-2
+            %h3
+        .row{style: "margin-top: 9px;"}
+          .col-lg-2
+            %p.text-right Opal
+          .col-lg-8
+            .progress{style: "margin-bottom: 9px;"}
+              .progress-bar.progress-bar-info{style: "width: 80%"}
+          .col-lg-2
+            %p $40.56
+        .row
+          .col-lg-2
+            %p.text-right MyMulti
+          .col-lg-8
+            .progress{style: "margin-bottom: 9px;"}
+              .progress-bar.progress-bar-warning{style: "width: 60%"}
+          .col-lg-2
+            %p $30.56
+        .row
+          .col-lg-2
+            %p.text-right TravelTen
+          .col-lg-8
+            .progress.progress-striped.active{style: "margin-bottom: 9px;"}
+              .progress-bar.progress-bar-success{style: "width: 20%"}
+          .col-lg-2
+            %p
+              $17.56
+              %span.glyphicon.glyphicon-ok
+        .row
+          .col-lg-2
+            %p.text-right Weekly
+          .col-lg-8
+            .progress{style: "margin-bottom: 9px;"}
+              .progress-bar.progress-bar-danger{style: "width: 50%"}
+          .col-lg-2
+            %p $20.56
+
+        .row
+          .col-lg-12
+            %h3
+              Not using Opal has already saved 123 people $1500. Spread the word.
+
       %footer
         .row
           .col-lg-12
@@ -132,21 +163,28 @@
                 %a{href: "http://www.transport.nsw.gov.au"} Transport for NSW
             %p
               Opal or Not is not associated with or approved by Transport for NSW.  All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
+            %h2 Credits
             %p
               Made by
               = succeed "." do
                 %a{href: "http://contentshare.sg"} Contentshare
             %p
-              Code released under the
+              %a{href: "https://github.com/jpatokal/opal_or_not"}
+                Code
+              released under the
               = succeed "." do
                 %a{href: "https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE"} MIT License
             %p
-              Based on
+              Built with
+              = succeed "," do
+                %a{href: "http://sinatrarb.com"} Sinatra
+              = succeed "," do
+                %a{href: "http://haml.info/"} Haml
+              = succeed "," do
+                %a{href: "http://getbootstrap.com"} Bootstrap
+              = succeed "," do
+                %a{href: "http://fortawesome.github.io/Font-Awesome/"} Font Awesome
               = succeed "." do
-                %a{href: "http://getbootstrap.com", rel: "nofollow"} Bootstrap
-              = succeed "." do
-                %a{href: "http://fortawesome.github.io/Font-Awesome/", rel: "nofollow"} Font Awesome
-              = succeed "." do
-                %a{href: "http://www.google.com/webfonts", rel: "nofollow"} Google
+                %a{href: "http://www.google.com/webfonts"} Google Webfonts
     %script{src: "vendor/jquery-1.9.1.min.js"}
     %script{src: "js//opal_or_not.js"}
