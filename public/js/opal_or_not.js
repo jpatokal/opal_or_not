@@ -3,6 +3,7 @@ google.setOnLoadCallback(initChart);
 
 var chart;
 var options;
+var submit_button_html = $('form button.compare').html();
 
 $('form').on('click', 'button.transfer', function() {
 	$('.segment-2').toggleClass('hidden');
@@ -10,8 +11,7 @@ $('form').on('click', 'button.transfer', function() {
 });
 
 $('form').on('click', 'button.compare', function() {
-  $('.spinner').removeClass('hidden');
-  $('.results').addClass('hidden');
+  $('button.compare').html('Calculating... <i class="fa fa-spinner fa-spin"/>').attr('disabled', true);
 
   var data = [
     { "mode": $('form .segment-1 .mode').val(),
@@ -26,24 +26,25 @@ $('form').on('click', 'button.compare', function() {
     });
   }
   tripData = JSON.stringify(data);
-  console.log(tripData);
 
-  $.post("/compute", tripData).done( function(data) {
-      console.log("IN ", data)
-      $('.spinner').addClass('hidden');
+  jqXhr = $.post("/compute", tripData).done( function(data) {
+      json = JSON.parse(data);
       $('.results').removeClass('hidden');
-      drawChart(data.chart);
+      drawChart(json.table);
+    });
+  jqXhr.always( function(data) {
+      $('button.compare').html(submit_button_html).removeAttr('disabled');
     });
 });
 
 function initChart() {
-  var data = google.visualization.arrayToDataTable([
+  var initial_data = [
     ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
     ['Opal', 10, 'gray', '$0.00' ],
     ['MyMulti', 10, 'gray', '$0.00' ],
     ['TravelTen', 10, 'gray', '$0.00' ],
     ['Weekly', 10, 'gray', '$0.00' ],
-  ]);
+  ];
   chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
   options = {
     animation: { duration: 500 },
@@ -52,18 +53,12 @@ function initChart() {
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },
     legend: { position: "none" }
   };
-  chart.draw(data, options);
+  drawChart(initial_data);
   // Chart cannot be drawn on hidden div
   $('.results').addClass('hidden');
 }
 
 function drawChart(data) {
-  var data = google.visualization.arrayToDataTable([
-    ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
-    ['Opal', 28.94, 'gray', '$28.94' ],
-    ['MyMulti', 20.49, 'gray', '$20.49' ],
-    ['TravelTen', 19.30, '#4582EC', '$19.30 ✓' ],
-    ['Weekly', 21.45, 'gray', '$21.45' ],
-  ]);
-  chart.draw(data, options);
+  table = google.visualization.arrayToDataTable(data);
+  chart.draw(table, options);
 }

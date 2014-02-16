@@ -14,5 +14,5 @@ end
 
 post '/compute' do
   data = JSON.parse(request.body.read)
-  FareOptions.new.compute(data).all.to_json
+  FareOptions.new.compute(data).result.to_json
 end
