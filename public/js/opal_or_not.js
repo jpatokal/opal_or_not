@@ -29,6 +29,17 @@ $('form').on('click', 'button.compare', function() {
 
   jqXhr = $.post("/compute", tripData).done( function(data) {
       json = JSON.parse(data);
+      if(json.winner == 'Opal') {
+        $(".opal-wins").removeClass('hidden');
+        $(".opal-loses").addClass('hidden');
+      } else {
+        $(".opal-wins").addClass('hidden');
+        $(".opal-loses").removeClass('hidden');
+      }
+      $('.winner').text(json.winner);
+      $('.alternative').text(json.alternative);
+      $('.weekly-savings').text("$" + Math.abs(json.savings.week).toFixed(2));
+      $('.yearly-savings').text("$" + Math.abs(json.savings.year).toFixed(2));
       $('.results').removeClass('hidden');
       drawChart(json.table);
     });
@@ -53,6 +64,7 @@ function initChart() {
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },
     legend: { position: "none" }
   };
+  $('.results').removeClass('hidden');
   drawChart(initial_data);
   // Chart cannot be drawn on hidden div
   $('.results').addClass('hidden');

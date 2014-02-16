@@ -40,8 +40,8 @@
                     %option{value: 2} One
                     %option{value: 4} Two
                     %option{value: 6} Three
-                    %option{value: 8} Four
-                    %option{value: 10, selected: "true"} Five
+                    %option{value: 8, selected: "true"} Four
+                    %option{value: 10} Five
                     %option{value: 12} Six
                     %option{value: 14} Seven
                 %label.col-md-8.control-label{style: "text-align:left"} days a week,
@@ -50,9 +50,9 @@
                 %label.col-md-2.col-md-offset-1.control-label I travel by
                 .col-md-2
                   %select.mode.form-control
-                    %option bus
+                    %option{selected: "true"} bus
                     %option ferry
-                    %option{selected: "true"} train
+                    %option train
 
                 %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
@@ -65,9 +65,9 @@
                 %label.col-md-2.col-md-offset-1.control-label and
                 .col-md-2
                   %select.mode.form-control
-                    %option{selected: "true"} bus
+                    %option bus
                     %option ferry
-                    %option train
+                    %option{selected: "true"} train
 
                 %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
@@ -88,19 +88,36 @@
                     %span.glyphicon.glyphicon-search
                     Compare fares
 
-      .bs-docs-section.results
+      .bs-docs-section.results.hidden
         .row
           .col-lg-12
             %p.lead{style: "margin-bottom:0px"}
-              %span.text-primary
-                Opal?
-              No, pal.
-              %br/
-              Using
-              %span.text-success
-                TravelTen
-              instead of
-              would save you $23.44 every week, or $523.44 in a year.
+              %span.opal-wins
+                %span.text-primary
+                  Opal?
+                Go for it, pal.  Switching from
+                %span.alternative.text-success
+                  TravelTen
+                would save you
+                %span.weekly-savings
+                  23.44
+                every week, or
+                %span.yearly-savings
+                  523.44
+                a year.
+              %span.opal-loses
+                %span.text-primary
+                  Opal?
+                No, pal. Using
+                %span.winner.text-success
+                  TravelTen
+                instead would save you
+                %span.weekly-savings
+                  23.44
+                every week, or
+                %span.yearly-savings
+                  523.44
+                a year.
         .row
           #bar-chart.col-lg-12{style: "height: 200px"}
         .row
@@ -113,23 +130,22 @@
           .col-lg-12
             %h4 Disclaimer
             %p
-              Opal, TravelTen, MyMulti and other trademarks referred to within this site are the property of
+              Opal or Not is not associated with or approved by
               = succeed "." do
                 %a{href: "http://www.transport.nsw.gov.au"} Transport for NSW
+              Opal, TravelTen, MyMulti and other trademarks referred to within this site are the property of Transport for NSW.
             %p
-              Opal or Not is not associated with or approved by Transport for NSW.  All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
+              All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
             %h4 Credits
             %p
               Made by
               = succeed "." do
                 %a{href: "http://contentshare.sg"} Contentshare
-            %p
               %a{href: "https://github.com/jpatokal/opal_or_not"}
                 Code
               released under the
               = succeed "." do
                 %a{href: "https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE"} MIT License
-            %p
               Built with
               = succeed "," do
                 %a{href: "http://sinatrarb.com"} Sinatra
@@ -137,9 +153,9 @@
                 %a{href: "http://haml.info/"} Haml
               = succeed "," do
                 %a{href: "http://getbootstrap.com"} Bootstrap
-              = succeed "." do
-                %a{href: "https://developers.google.com/chart/"} Google Charts
               = succeed "," do
+                %a{href: "https://developers.google.com/chart/"} Google Charts
+              = succeed "." do
                 %a{href: "http://fortawesome.github.io/Font-Awesome/"} Font Awesome
     %script{src: "vendor/jquery-1.9.1.min.js"}
     %script{src: "https://www.google.com/jsapi"}
