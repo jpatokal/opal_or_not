@@ -12,6 +12,10 @@ class Fare
     @data = data.sort {|a,b| a[:mode] <=> b[:mode]}
   end
 
+  def name
+    self.class.to_s
+  end
+
   def single(segment)
     begin
       fare_table[segment[:mode]][segment[:zone]]
@@ -134,7 +138,37 @@ class TravelTen < Fare
   end
 end
 
+class TrainSingle < Fare
+  def name
+    "MyTrain Singles"
+  end
+
+  def fare_table
+    {
+      "train" => {
+        1 => 3.80,
+        2 => 4.60,
+        3 => 5.20,
+        4 => 6.80,
+        5 => 8.60
+      },
+    }
+  end
+
+  def compute_segment(segment)
+    if segment[:mode] != "train"
+      nil
+    else
+      super
+    end
+  end
+end
+
 class Weekly < Fare
+  def name
+    "MyTrain Weekly"
+  end
+
   def compute_segment(segment)
     if segment[:mode] == "train"
       [28, 35, 41, 52, 61][segment[:zone] - 1]

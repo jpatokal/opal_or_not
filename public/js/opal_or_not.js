@@ -58,11 +58,14 @@ function initChart() {
   ];
   chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
   options = {
-    animation: { duration: 500 },
+    animation: { duration: 500, easing: "out" },
+    chartArea: { left: 0 },
     fontName: 'Georgia,"Times New Roman",Times,serif',
     fontSize: 20,
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },
-    legend: { position: "none" }
+    vAxis: { textPosition: "in", textStyle: {color: 'white', auraColor: 'gray' } },
+    legend: { position: "none" },
+    tooltip: { trigger: "none" }
   };
   $('.results').removeClass('hidden');
   drawChart(initial_data);

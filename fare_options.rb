@@ -5,10 +5,15 @@ class FareOptions
     @options = options
   end
 
+  def fare_types
+    [Opal, MyMulti, TravelTen, TrainSingle, Weekly]
+  end
+
   def compute(data)
-    [Opal, MyMulti, TravelTen, Weekly].each do |type|
-      fare = type.new(data).compute
-      @options[type.to_s] = fare if fare
+    fare_types.each do |type|
+      fare_class = type.new(data)
+      fare = fare_class.compute
+      @options[fare_class.name] = fare if fare
     end
     self
   end
@@ -19,7 +24,11 @@ class FareOptions
 
   def table
     fare_array = @options.to_a.sort { |x,y| x.last <=> y.last }.map do |fare|
-      color = (fare.first == cheapest) ? '#4582EC' : 'gray'
+      if fare.first == 'Opal'
+        color = '#4582EC'
+      else
+        color = (fare.first == cheapest) ? '#3FAD46' : 'gray'
+      end
       fare.push(color, "$%.02f" % fare.last)
     end
     fare_array.unshift ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ]
