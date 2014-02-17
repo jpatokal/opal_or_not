@@ -5,23 +5,43 @@ var chart;
 var options;
 var submit_button_html = $('form button.compare').html();
 
+// Open/close second trip segment
 $('form').on('click', 'button.transfer', function() {
 	$('.segment-2').toggleClass('hidden');
   $('.transfer.btn').toggleClass('hidden');
 });
 
+// Update zone options when mode changes
+function selectModeHandler(segment) {
+  $('form').on('change', segment + ' .mode', function() {
+    var selectedMode = $('form ' + segment + ' .mode').val();
+    ['bus', 'ferry', 'train'].map( function(mode) {
+      if(mode == selectedMode) {
+        $('form ' + segment + ' select.zone.' + mode).removeClass('hidden');
+      } else {
+        $('form ' + segment + ' select.zone.' + mode).addClass('hidden');
+      }
+    });
+  });
+}
+selectModeHandler('.segment-1');
+selectModeHandler('.segment-2');
+
+// Compute fares
 $('form').on('click', 'button.compare', function() {
   $('button.compare').html('Calculating... <i class="fa fa-spinner fa-spin"/>').attr('disabled', true);
 
+  var mode = $('form .segment-1 .mode').val();
   var data = [
-    { "mode": $('form .segment-1 .mode').val(),
-      "zone": $('form .segment-1 .zone').val(),
+    { "mode": mode,
+      "zone": $('form .segment-1 .zone.' + mode).val(),
       "count": $('form .count').val() }
   ];
   if(! $('.segment-2').hasClass('hidden')) {
+    mode = $('form .segment-2 .mode').val();
     data.push({
-      "mode": $('form .segment-2 .mode').val(),
-      "zone": $('form .segment-2 .zone').val(),
+      "mode": mode,
+      "zone": $('form .segment-2 .zone.' + mode).val(),
       "count": $('form .count').val()
     });
   }
@@ -59,7 +79,7 @@ function initChart() {
   chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
   options = {
     animation: { duration: 500, easing: "out" },
-    chartArea: { left: 0 },
+    chartArea: { left: 0, top: 10 },
     fontName: 'Georgia,"Times New Roman",Times,serif',
     fontSize: 20,
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },

@@ -20,15 +20,15 @@
             %li
               %a{href: "faq"} FAQ
             %li
-              %a{href: "blog"} Blog
+              %a{href: "about"} About
     .container
-      #banner.page-header
-      .row
-        .col-md-12.center-block
-          %h1.text-primary
-            %img{src: "images/Opal_card.png"}
+      .bs-docs-section
+        .row{style: "margin: 64px 0px 10px 0px"}
+          %img{src: "images/Opal_card.png"}
+          %span.h1.text-primary
             or Not?
-      %p.lead Find out if Sydney's new transport smartcard will cost you more.
+          %p.lead.pull-right
+            Find out if Sydney's new transport smartcard will cost you more.
 
       .bs-docs-section
         .well
@@ -53,13 +53,21 @@
                     %option{selected: "true"} bus
                     %option ferry
                     %option train
-
                 %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
-                  %select.zone.form-control
-                    %option 1
-                    %option 2
-                    %option 3
+                  %select.zone.bus.form-control
+                    %option{value: 1} MyBus 1
+                    %option{value: 2} MyBus 2
+                    %option{value: 3} MyBus 3
+                  %select.zone.train.form-control.hidden
+                    %option{value: 1} MyTrain 1
+                    %option{value: 2} MyTrain 2
+                    %option{value: 3} MyTrain 3
+                    %option{value: 4} MyTrain 4
+                    %option{value: 5} MyTrain 5
+                  %select.zone.ferry.form-control.hidden
+                    %option{value: 1} MyFerry 1
+                    %option{value: 2} MyFerry 2
 
               .form-group.segment-2.hidden
                 %label.col-md-2.col-md-offset-1.control-label and
@@ -68,13 +76,22 @@
                     %option bus
                     %option ferry
                     %option{selected: "true"} train
-
                 %label.col-md-1.control-label in&nbsp;zone
                 .col-md-2
-                  %select.zone.form-control
-                    %option 1
-                    %option 2
-                    %option 3
+                  %select.zone.bus.form-control.hidden
+                    %option{value: 1} MyBus 1
+                    %option{value: 2} MyBus 2
+                    %option{value: 3} MyBus 3
+                  %select.zone.train.form-control
+                    %option{value: 1} MyTrain 1
+                    %option{value: 2} MyTrain 2
+                    %option{value: 3} MyTrain 3
+                    %option{value: 4} MyTrain 4
+                    %option{value: 5} MyTrain 5
+                  %select.zone.ferry.form-control.hidden
+                    %option{value: 1} MyFerry 1
+                    %option{value: 2} MyFerry 2
+
               .form-group
                 .col-md-2.col-md-offset-3
                   %button.btn.add.transfer
