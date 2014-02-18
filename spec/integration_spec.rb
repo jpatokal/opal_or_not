@@ -24,9 +24,9 @@ describe "integration" do
     end
 
     it "handles train-bus combos correctly" do
-      data = [{ :mode => "train", :zone => 3, :count => 10 }, { :mode => "bus",   :zone => 3, :count => 10 }]
+      data = [{ :mode => "train", :zone => 1, :count => 10 }, { :mode => "bus",   :zone => 2, :count => 10 }]
       options = Comparison.new.compute(data)
-      options.all.should == {"Opal"=>73.6, "MyMulti"=>54}
+      options.all.should == {"Opal"=>54.4, "MyMulti"=>46}
     end
   end
 end

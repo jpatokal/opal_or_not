@@ -1,4 +1,4 @@
-require_relative 'fare'
+require_relative 'opal'
 
 class Comparison
   def initialize(options={})
