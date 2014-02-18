@@ -10,10 +10,10 @@ class TestFare < Fare
   end
 end
 
-describe FareOptions do
+describe Comparison do
   describe 'when computing' do
     before :each do
-      @options = FareOptions.new
+      @options = Comparison.new
       stub(@options).fare_types { [TestFare] }
     end
 
@@ -27,7 +27,7 @@ describe FareOptions do
 
   describe 'with results already computed' do
     before :each do
-      @options = FareOptions.new({'Gopal' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
+      @options = Comparison.new({'Gopal' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
     end
 
     describe '#cheapest' do
@@ -51,7 +51,7 @@ describe FareOptions do
       end
 
       it 'highlights both Opal and the lowest fare if different' do
-        FareOptions.new({'Gopal' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
+        Comparison.new({'Gopal' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
           ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
           ['Nopal', 10.10, '#3FAD46', '$10.10'],
           ['Opal', 20.20, '#4582EC', '$20.20'],

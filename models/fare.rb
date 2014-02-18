@@ -69,10 +69,21 @@ class Opal < Fare
 
   def compute_journey
     # Collapse same-mode transfers, since they're free with Opal
+    # TODO daily fare cap $15
     @data.uniq {|a| a[:mode]}.map do |segment|
       compute_segment segment
     end
   end
+
+#  days = (count > 8 ? 8 : count) / 2
+#  for i in range days
+#    compute_day
+#  end
+
+#  def compute_day
+# for each segment...
+#    compute_single_segment
+# if > 15 then 15
 
   def compute_segment(segment)
     count = segment[:count]
@@ -84,20 +95,20 @@ class MyMulti < Fare
   def fare_table
     {
       "bus" => {
-        1 => 44,
-        2 => 44,
-        3 => 44
+        1 => 46,
+        2 => 46,
+        3 => 46
       },
       "train" => {
-        1 => 44,
-        2 => 44,
-        3 => 52,
-        4 => 52,
-        5 => 61
+        1 => 46,
+        2 => 46,
+        3 => 54,
+        4 => 54,
+        5 => 63
       },
       "ferry" => {
-        1 => 52,
-        2 => 52
+        1 => 54,
+        2 => 54
       }
     }
   end

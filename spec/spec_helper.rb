@@ -1,3 +1,3 @@
-require_relative '../fare_options'
+require_relative '../models/comparison'
 
 require 'rr'

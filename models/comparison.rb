@@ -1,6 +1,6 @@
 require_relative 'fare'
 
-class FareOptions
+class Comparison
   def initialize(options={})
     @options = options
   end
