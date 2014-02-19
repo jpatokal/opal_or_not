@@ -72,10 +72,9 @@ $('form').on('click', 'button.compare', function() {
 function initChart() {
   var initial_data = [
     ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
-    ['Opal', 10, 'gray', '$0.00' ],
-    ['MyMulti', 10, 'gray', '$0.00' ],
-    ['TravelTen', 10, 'gray', '$0.00' ],
-    ['Weekly', 10, 'gray', '$0.00' ],
+    ['Opal', 1, 'gray', '$0.00' ],
+    ['TravelTen', 1, 'gray', '$0.00' ],
+    ['MyMulti', 1, 'gray', '$0.00' ],
   ];
   chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
   options = {
