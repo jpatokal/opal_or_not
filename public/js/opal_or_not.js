@@ -79,7 +79,7 @@ function initChart() {
   chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
   options = {
     animation: { duration: 500, easing: "out" },
-    chartArea: { left: 0, top: 10 },
+    chartArea: { left: 0, top: 10, height: 140 },
     fontName: 'Georgia,"Times New Roman",Times,serif',
     fontSize: 20,
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },

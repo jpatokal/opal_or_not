@@ -4,9 +4,9 @@
     %meta{charset: "utf-8"}/
     %title Opal or Not
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %meta{description: "Opal or Not?  Find out if Sydney's new transport smartcard will cost you more."}/
     %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
     %link{href: "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel: "stylesheet"}/
-
   %body
     = Helper.render_view('navbar')
     .container
@@ -124,13 +124,14 @@
                   523.44
                 a year.
         .row
-          #bar-chart.col-lg-12{style: "height: 200px"}
+          #bar-chart.col-lg-12{style: "height: 160px"}
         .row
           .col-lg-12
-           %p
-              After X comparisons, Opal was the cheapest option Y% of the time.
-          %p
-              Did you find this useful?  Spread the word.
+            %p
+              After A comparisons, B% found Opal cheaper, saving a total of $C,
+              and C% found Opal more expensive, costing them an extra $D.
+            %p
+              Did you find this useful? Help spread the word.
 
       = Helper.render_view('footer')
 
