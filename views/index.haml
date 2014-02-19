@@ -89,11 +89,13 @@
                     %span.glyphicon.glyphicon-chevron-up
                     Remove transfer
                 .col-md-6.pull-right
-                  %button.btn.btn-primary.btn-lg.compare
+                  %button.btn.btn-primary.btn-lg.compare#results
                     %span.glyphicon.glyphicon-search
                     Compare fares
 
       .bs-docs-section.results.hidden
+        .row
+          #bar-chart.col-lg-12{style: "height: 160px"}
         .row
           .col-lg-12
             %p.lead{style: "margin-bottom:0px"}
@@ -124,9 +126,8 @@
                   523.44
                 a year.
         .row
-          #bar-chart.col-lg-12{style: "height: 160px"}
-        .row
           .col-lg-12
+            %p
             %p
               After A comparisons, B% found Opal cheaper, saving a total of $C,
               and C% found Opal more expensive, costing them an extra $D.

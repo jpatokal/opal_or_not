@@ -62,6 +62,7 @@ $('form').on('click', 'button.compare', function() {
       $('.yearly-savings').text("$" + Math.abs(json.savings.year).toFixed(2));
       $('.results').removeClass('hidden');
       drawChart(json.table);
+      window.location.href = "#results";
     });
   jqXhr.always( function(data) {
       $('button.compare').html(submit_button_html).removeAttr('disabled');
