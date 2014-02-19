@@ -1,0 +1,59 @@
+= require './views/helper.rb'
+%html{lang: "en"}
+  %head
+    %meta{charset: "utf-8"}/
+    %title Opal or Not
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel: "stylesheet"}/
+
+  %body
+    = Helper.render_view('navbar')
+    .container
+      .bs-docs-section
+        %p.page-header
+          %h1 Frequently asked questions
+
+        %h5 What fares is this comparing?
+        %p Adult full fares for Opal, MyMulti, TravelTen (bus & ferry), MyTrain Weekly and MyTrain Singles.
+
+        %h5 Where's light rail/tram?
+        %p Opal has not released its fares yet.
+
+        %h5 How about concession, pensioner, off-peak, one-way, multiple transfers, link tickets, airport gate pass...?
+        %p
+          The user interface has intentionally been kept as simple as possible.  But if enough people
+          %a{href: '#shout'} shout me a beer
+          and tell me what they want to see, I'll consider implementing more.
+
+        %h5 Are these comparisons accurate?
+        %p
+          Mostly.  The two main catches are:
+          %ul
+            %li Opal bus zones do not match MyBus distances exactly.
+            %li MyMulti zones do not match Opal zones or MyBus/MyTrain distances exactly.
+        %p
+          So depending on your route and destination, the computed fare may be based on an Opal zone or MyMulti ticket class that's actually cheaper or more expensive that what you need to buy.
+        %p
+          Also,
+          = succeed "," do
+            %a{href: '#disclaimer'} per the disclaimer
+          these fare calculations are in no way vetted or approved by Transport for NSW, and may contain faulty numbers or faulty logic.
+          %a{href: 'https://github.com/jpatokal/opal_or_not/issues'} Bug reports
+          are welcome.
+
+        %h5 Who's behind this and why?
+        %p
+          There's a blog post about that.
+
+        %h5#shout You just saved me a hundred bucks.  Can I buy you a beer?
+        %p
+          Certainly.
+          = succeed "," do
+            %a{href: "https://www.paypal.com/sendmoney?email=info@contentshare.sg"} PayPal
+          Bitcoin (
+          %tt
+            1LyJTcubFcJhkFEHwJX9E54n8YGoGZmHd6
+          ) or even in liquid form if you're around Pyrmont/the CBD in the evenings.
+
+      = Helper.render_view('footer')

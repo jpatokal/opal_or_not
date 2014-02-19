@@ -1,3 +1,4 @@
+= require './views/helper.rb'
 %html{lang: "en"}
   %head
     %meta{charset: "utf-8"}/
@@ -7,20 +8,7 @@
     %link{href: "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel: "stylesheet"}/
 
   %body
-    .navbar.navbar-default.navbar-fixed-top
-      .container
-        .navbar-header
-          %a.navbar-brand{href: "../"} Opal or Not
-          %button.navbar-toggle{"data-target" => "#navbar-main", "data-toggle" => "collapse", type: "button"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-        #navbar-main.navbar-collapse.collapse
-          %ul.nav.navbar-nav
-            %li
-              %a{href: "faq"} FAQ
-            %li
-              %a{href: "about"} About
+    = Helper.render_view('navbar')
     .container
       .bs-docs-section
         .row{style: "margin: 64px 0px 10px 0px"}
@@ -40,8 +28,8 @@
                     %option{value: 2} One
                     %option{value: 4} Two
                     %option{value: 6} Three
-                    %option{value: 8, selected: "true"} Four
-                    %option{value: 10} Five
+                    %option{value: 8} Four
+                    %option{value: 10, selected: "true"} Five
                     %option{value: 12} Six
                     %option{value: 14} Seven
                 %label.col-md-8.control-label{style: "text-align:left"} days a week,
@@ -58,7 +46,7 @@
                   %select.zone.bus.form-control
                     %option{value: 1} MyBus 1
                     %option{value: 2} MyBus 2
-                    %option{value: 3} MyBus 3
+                    %option{value: 3, selected: "true"} MyBus 3
                   %select.zone.train.form-control.hidden
                     %option{value: 1} MyTrain 1
                     %option{value: 2} MyTrain 2
@@ -139,41 +127,13 @@
           #bar-chart.col-lg-12{style: "height: 200px"}
         .row
           .col-lg-12
-            %p.lead
-              Not using Opal has already saved 123 people $1500. Spread the word.
+           %p
+              After X comparisons, Opal was the cheapest option Y% of the time.
+          %p
+              Did you find this useful?  Spread the word.
 
-      %footer
-        .row
-          .col-lg-12
-            %h4 Disclaimer
-            %p
-              Opal or Not is not associated with or approved by
-              = succeed "." do
-                %a{href: "http://www.transport.nsw.gov.au"} Transport for NSW
-              Opal, TravelTen, MyMulti and other trademarks referred to within this site are the property of Transport for NSW.
-            %p
-              All fare comparisons are indicative.   Opal or Not does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. Opal or Not expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
-            %h4 Credits
-            %p
-              Made by
-              = succeed "." do
-                %a{href: "http://contentshare.sg"} Contentshare
-              %a{href: "https://github.com/jpatokal/opal_or_not"}
-                Code
-              released under the
-              = succeed "." do
-                %a{href: "https://github.com/thomaspark/bootswatch/blob/gh-pages/LICENSE"} MIT License
-              Built with
-              = succeed "," do
-                %a{href: "http://sinatrarb.com"} Sinatra
-              = succeed "," do
-                %a{href: "http://haml.info/"} Haml
-              = succeed "," do
-                %a{href: "http://getbootstrap.com"} Bootstrap
-              = succeed "," do
-                %a{href: "https://developers.google.com/chart/"} Google Charts
-              = succeed "." do
-                %a{href: "http://fortawesome.github.io/Font-Awesome/"} Font Awesome
+      = Helper.render_view('footer')
+
     %script{src: "vendor/jquery-1.9.1.min.js"}
     %script{src: "https://www.google.com/jsapi"}
     %script{src: "js//opal_or_not.js"}
