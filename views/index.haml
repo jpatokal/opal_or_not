@@ -57,7 +57,7 @@
                 .col-md-8.train.selector
                   %label.col-md-1.control-label from
                   .col-md-4
-                    %select.source.form-control
+                    %select.origin.form-control
                       - Helper.train_stations.each do |station|
                         %option= station
                   %label.col-md-1.control-label to
@@ -90,7 +90,7 @@
                 .col-md-8.train.selector.hidden
                   %label.col-md-1.control-label from
                   .col-md-4
-                    %select.source.form-control
+                    %select.origin.form-control
                       - Helper.train_stations.each do |station|
                         %option= station
                   %label.col-md-1.control-label to
@@ -159,4 +159,5 @@
     %script{src: "vendor/jquery-1.9.1.min.js"}
     %script{src: "vendor/bootstrap/js/bootstrap.min.js"}
     %script{src: "https://www.google.com/jsapi"}
+    %script{src: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
     %script{src: "js/opal_or_not.js"}
