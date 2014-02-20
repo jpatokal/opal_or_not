@@ -28,12 +28,13 @@
 
         %h5 Are these comparisons accurate?
         %p
-          Mostly.  The two main catches are:
+          Mostly, but there are a few catches:
           %ul
             %li Opal bus zones do not match MyBus distances exactly.
             %li MyMulti zones do not match Opal zones or MyBus/MyTrain distances exactly.
+            %li Distance between train stations (used for determining train zone) may not match official distance.
         %p
-          So depending on your route and destination, the computed fare may be based on an Opal zone or MyMulti ticket class that's actually cheaper or more expensive that what you need to buy.
+          So depending on your route and destination, the computed fare may be based on an Opal zone, MyMulti/MyZone ticket class that's actually cheaper or more expensive that what you need to buy.
         %p
           Also,
           = succeed "," do

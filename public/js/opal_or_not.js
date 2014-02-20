@@ -31,6 +31,7 @@ function selectModeHandler(segment) {
 }
 selectModeHandler('.segment-1');
 selectModeHandler('.segment-2');
+$('form .segment-1 select.destination').val('Central');
 
 // Compute fares
 $('form').on('click', 'button.compare', function() {
@@ -95,17 +96,48 @@ function doSubmit() {
 // This would make more sense to do in the backend, but Google's quotas are
 // much more generous for client-side JS requests.
 function getTrainDistance(origin, destination, segment) {
+  // Tomorrow 9 AM, when train schedule is at its busiest
+  var rushHour = new Date();
+  rushHour.setDate(rushHour.getDate() + 1);
+  rushHour.setHours(9,0,0,0);
   var request = {
       origin: origin + " train station, Sydney, NSW",
       destination: destination + " train station, Sydney, NSW",
       transitOptions: {
-        departureTime: new Date()
+        departureTime: rushHour
       },
       travelMode: google.maps.TravelMode.TRANSIT
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      distanceToTrainZone(response.routes[0].legs[0].distance.value / 1000, segment);
+      // Find first 'leg' where all 'steps' are WALKING or TRANSIT..HEAVY_RAIL
+      var foundValidLeg = false;
+      for(i = 0; i < response.routes[0].legs.length; i++) {
+        var leg = response.routes[0].legs[i];
+        var validLeg = true;
+        for(j = 0; j < leg.steps.length; j++) {
+          var mode = leg.steps[j].travel_mode;
+          console.log(i, j, mode, leg.steps[j].instructions);
+          if(mode == "TRANSIT") {
+            if(leg.steps[j].transit.line.vehicle.type != "HEAVY_RAIL") {
+              validLeg = false;
+            }
+          }
+        }
+        if(validLeg) {
+          console.log('valid!', i);
+          foundValidLeg = true;
+          break;
+        } else {
+          console.log('invalid', i);
+        }
+      }
+      if(foundValidLeg) {
+        distanceToTrainZone(response.routes[0].legs[i].distance.value / 1000, segment);
+      } else {
+        // TODO something...
+        console.error(status, response);
+      }
     } else {
       // TODO something...
       console.error(status, response);
