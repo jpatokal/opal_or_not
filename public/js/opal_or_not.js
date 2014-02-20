@@ -17,9 +17,9 @@ function selectModeHandler(segment) {
     var selectedMode = $('form ' + segment + ' .mode').val();
     ['bus', 'ferry', 'train'].map( function(mode) {
       if(mode == selectedMode) {
-        $('form ' + segment + ' select.zone.' + mode).removeClass('hidden');
+        $(segment + ' .selector.' + mode).removeClass('hidden');
       } else {
-        $('form ' + segment + ' select.zone.' + mode).addClass('hidden');
+        $(segment + ' .selector.' + mode).addClass('hidden');
       }
     });
   });

@@ -23,7 +23,7 @@
           %form.bs-example.form-horizontal{onsubmit: "return false;"}
             %fieldset
               .form-group
-                .col-md-2.col-md-offset-1
+                .col-md-2
                   %select.count.form-control
                     %option{value: 2} One
                     %option{value: 4} Two
@@ -35,60 +35,80 @@
                 %label.col-md-8.control-label{style: "text-align:left"} days a week,
 
               .form-group.segment-1
-                %label.col-md-2.col-md-offset-1.control-label I travel by
-                .col-md-2
-                  %select.mode.form-control
-                    %option{selected: "true"} bus
-                    %option ferry
-                    %option train
-                %label.col-md-1.control-label in&nbsp;zone
-                .col-md-2
-                  %select.zone.bus.form-control
-                    %option{value: 1} MyBus 1
-                    %option{value: 2} MyBus 2
-                    %option{value: 3, selected: "true"} MyBus 3
-                  %select.zone.train.form-control.hidden
-                    %option{value: 1} MyTrain 1
-                    %option{value: 2} MyTrain 2
-                    %option{value: 3} MyTrain 3
-                    %option{value: 4} MyTrain 4
-                    %option{value: 5} MyTrain 5
-                  %select.zone.ferry.form-control.hidden
-                    %option{value: 1} MyFerry 1
-                    %option{value: 2} MyFerry 2
-
-              .form-group.segment-2.hidden
-                %label.col-md-2.col-md-offset-1.control-label and
+                %label.col-md-2.control-label I&nbsp;travel&nbsp;by
                 .col-md-2
                   %select.mode.form-control
                     %option bus
                     %option ferry
                     %option{selected: "true"} train
-                %label.col-md-1.control-label in&nbsp;zone
+                .col-md-8.bus.selector.hidden
+                  %label.col-md-2.control-label in&nbsp;zone
+                  .col-md-4
+                    %select.zone.bus.form-control
+                      %option{value: 1} MyBus 1
+                      %option{value: 2} MyBus 2
+                      %option{value: 3, selected: "true"} MyBus 3
+                .col-md-8.ferry.selector.hidden
+                  %label.col-md-2.control-label in&nbsp;zone
+                  .col-md-4
+                    %select.zone.ferry.form-control
+                      %option{value: 1} MyFerry 1
+                      %option{value: 2} MyFerry 2
+                .col-md-8.train.selector
+                  %label.col-md-1.control-label from
+                  .col-md-4
+                    %select.source.form-control
+                      - Helper.train_stations.each do |station|
+                        %option= station
+                  %label.col-md-1.control-label to
+                  .col-md-4
+                    %select.destination.form-control
+                      - Helper.train_stations.each do |station|
+                        %option= station
+                  %input.zone.train{type: "hidden", value: 1} 
+
+              .form-group.segment-2.hidden
+                %label.col-md-2.control-label and
                 .col-md-2
-                  %select.zone.bus.form-control.hidden
-                    %option{value: 1} MyBus 1
-                    %option{value: 2} MyBus 2
-                    %option{value: 3} MyBus 3
-                  %select.zone.train.form-control
-                    %option{value: 1} MyTrain 1
-                    %option{value: 2} MyTrain 2
-                    %option{value: 3} MyTrain 3
-                    %option{value: 4} MyTrain 4
-                    %option{value: 5} MyTrain 5
-                  %select.zone.ferry.form-control.hidden
-                    %option{value: 1} MyFerry 1
-                    %option{value: 2} MyFerry 2
+                  %select.mode.form-control
+                    %option{selected: "true"} bus
+                    %option ferry
+                    %option train
+                .col-md-8.bus.selector
+                  %label.col-md-2.control-label in&nbsp;zone
+                  .col-md-4
+                    %select.zone.bus.form-control
+                      %option{value: 1} MyBus 1
+                      %option{value: 2} MyBus 2
+                      %option{value: 3, selected: "true"} MyBus 3
+                .col-md-8.ferry.selector.hidden
+                  %label.col-md-2.control-label in&nbsp;zone
+                  .col-md-4
+                    %select.zone.ferry.form-control
+                      %option{value: 1} MyFerry 1
+                      %option{value: 2} MyFerry 2
+                .col-md-8.train.selector.hidden
+                  %label.col-md-1.control-label from
+                  .col-md-4
+                    %select.source.form-control
+                      - Helper.train_stations.each do |station|
+                        %option= station
+                  %label.col-md-1.control-label to
+                  .col-md-4
+                    %select.destination.form-control
+                      - Helper.train_stations.each do |station|
+                        %option= station
+                  %input.zone.train{type: "hidden", value: 1} 
 
               .form-group
-                .col-md-2.col-md-offset-3
+                .col-xs-2.col-md-offset-2
                   %button.btn.add.transfer
                     %span.glyphicon.glyphicon-chevron-down
                     Add transfer
                   %button.btn.remove.transfer.hidden
                     %span.glyphicon.glyphicon-chevron-up
                     Remove transfer
-                .col-md-6.pull-right
+                .col-xs-2.col-xs-offset-4
                   %button.btn.btn-primary.btn-lg.compare#results
                     %span.glyphicon.glyphicon-search
                     Compare fares
