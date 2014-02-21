@@ -20,9 +20,10 @@
         %h5 Where's light rail/tram?
         %p Opal has not released its fares yet.
 
-        %h5 How about concession, pensioner, off-peak, one-way, multiple transfers, link tickets, airport gate pass...?
+        %h5 How about concession, pensioner, off-peak, one-way, multiple transfers, link tickets, Family Fun Day, airport gate pass...?
         %p
-          The user interface has intentionally been kept as simple as possible.  But if enough people
+          The interface aims to make it as simple as possible for regular commuters to see how Opal
+          will affect them.  But if enough people
           %a{href: '#shout'} shout me a beer
           and tell me what they want to see, I'll consider implementing more.
 
@@ -32,9 +33,9 @@
           %ul
             %li Opal bus zones do not match MyBus distances exactly.
             %li MyMulti zones do not match Opal zones or MyBus/MyTrain distances exactly.
-            %li Distance between train stations (used for determining train zone) may not match official distance.
+            %li Distance between train stations, which used for determining train fare zone, may not match official distance.
         %p
-          So depending on your route and destination, the computed fare may be based on an Opal zone, MyMulti/MyZone ticket class that's actually cheaper or more expensive that what you need to buy.
+          So depending on your route and destination, the computed fare may be based on an Opal zone or MyMulti/MyBus/MyTrain ticket class that's actually cheaper or more expensive that what you need to buy.
         %p
           Also,
           = succeed "," do
@@ -50,9 +51,8 @@
         %h5#shout You just saved me a hundred bucks.  Can I buy you a beer?
         %p
           Certainly.
-          = succeed "," do
-            %a{href: "https://www.paypal.com/sendmoney?email=info@contentshare.sg"} PayPal
-          Bitcoin (
+          %a{href: "https://www.paypal.com/sendmoney?email=info@contentshare.sg"} PayPal
+          (info at contentshare dot sg), Bitcoin (
           %tt
             1LyJTcubFcJhkFEHwJX9E54n8YGoGZmHd6
           ) or even in liquid form if you're around Pyrmont/the CBD in the evenings.

@@ -6,6 +6,7 @@
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
     %meta{description: "Opal or Not?  Find out if Sydney's new transport smartcard will cost you more."}/
     %link{href: "/vendor/bootstrap/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "/vendor/social-likes_classic.css", rel: "stylesheet"}/
     %link{href: "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css", rel: "stylesheet"}/
   %body
     = Helper.render_view('navbar')
@@ -155,13 +156,20 @@
             %p
               After A comparisons, B% found Opal cheaper, saving a total of $C,
               and C% found Opal more expensive, costing them an extra $D.
+        .row
+          .col-sm-4
             %p
-              Did you find this useful? Help spread the word.
+              Did you find this useful? Help spread the word:
+          .social.col-sm-7.col-xs-offset-1{style: "margin-left: 10px"}
+            .facebook{title: "Share link on Facebook"} Facebook
+            .twitter{title: "Share link on Twitter", data_via: "jpatokal"} Twitter
+            .plusone{title: "Share link on Google+"} Google+
 
       = Helper.render_view('footer')
 
     %script{src: "vendor/jquery-1.9.1.min.js"}
     %script{src: "vendor/bootstrap/js/bootstrap.min.js"}
+    %script{src: "vendor/social-likes.min.js"}
     %script{src: "https://www.google.com/jsapi"}
     %script{src: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"}
     %script{src: "js/opal_or_not.js"}
