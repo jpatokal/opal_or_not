@@ -35,15 +35,22 @@ $('form .segment-1 select.destination').val('Central');
 
 // Compute fares
 $('form').on('click', 'button.compare', function() {
+  $('.alert').addClass('hidden');
   $('button.compare').html('Calculating... <i class="fa fa-spinner fa-spin"/>').attr('disabled', true);
 
-  if($('form .segment-1 .mode').val() == 'train') {
+  var mode1 = $('form .segment-1 .mode').val();
+  var mode2 = $('form .segment-2 .mode').val();
+  if(mode1 == 'train') {
+    if(hasTransfer() && mode2 == 'train') {
+      error('No need to specify train transfers, just enter origin and final destination.');
+      return;
+    }
     getTrainDistance(
       $('form .segment-1 select.origin').val(),
       $('form .segment-1 select.destination').val(), 1);
     return; // async
   } else {
-    if(hasTransfer && $('.segment-2 .mode').val() == 'train') {
+    if(hasTransfer() && mode2 == 'train') {
       getTrainDistance(
         $('form .segment-2 select.origin').val(),
         $('form .segment-2 select.destination').val(), 2);
@@ -72,25 +79,25 @@ function doSubmit() {
   tripData = JSON.stringify(data);
 
   jqXhr = $.post("/compute", tripData).done( function(data) {
-      json = JSON.parse(data);
-      if(json.winner == 'Opal') {
-        $(".opal-wins").removeClass('hidden');
-        $(".opal-loses").addClass('hidden');
-      } else {
-        $(".opal-wins").addClass('hidden');
-        $(".opal-loses").removeClass('hidden');
-      }
-      $('.winner').text(json.winner);
-      $('.alternative').text(json.alternative);
-      $('.weekly-savings').text("$" + Math.abs(json.savings.week).toFixed(2));
-      $('.yearly-savings').text("$" + Math.abs(json.savings.year).toFixed(2));
-      $('.results').removeClass('hidden');
-      drawChart(json.table);
-      window.location.href = "#results";
-    });
+    json = JSON.parse(data);
+    if(json.winner == 'Opal') {
+      $(".opal-wins").removeClass('hidden');
+      $(".opal-loses").addClass('hidden');
+    } else {
+      $(".opal-wins").addClass('hidden');
+      $(".opal-loses").removeClass('hidden');
+    }
+    $('.winner').text(json.winner);
+    $('.alternative').text(json.alternative);
+    $('.weekly-savings').text("$" + Math.abs(json.savings.week).toFixed(2));
+    $('.yearly-savings').text("$" + Math.abs(json.savings.year).toFixed(2));
+    $('.results').removeClass('hidden');
+    drawChart(json.table);
+    window.location.href = "#results";
+  });
   jqXhr.always( function(data) {
-      $('button.compare').html(submit_button_html).removeAttr('disabled');
-    });
+    $('button.compare').html(submit_button_html).removeAttr('disabled');
+  });
 }
 
 // This would make more sense to do in the backend, but Google's quotas are
@@ -125,7 +132,6 @@ function getTrainDistance(origin, destination, segment) {
           }
         }
         if(validLeg) {
-          console.log('valid!', i);
           foundValidLeg = true;
           break;
         } else {
@@ -133,14 +139,14 @@ function getTrainDistance(origin, destination, segment) {
         }
       }
       if(foundValidLeg) {
-        distanceToTrainZone(response.routes[0].legs[i].distance.value / 1000, segment);
+        var distance = response.routes[0].legs[i].distance.value / 1000;
+        console.log('valid', i, distance);
+        distanceToTrainZone(distance, segment);
       } else {
-        // TODO something...
-        console.error(status, response);
+        error("Sorry, couldn't work out a sensible route between those two stations.  Try a bus instead?");
       }
     } else {
-      // TODO something...
-      console.error(status, response);
+      error();
     }
   });
 }
@@ -160,6 +166,14 @@ function distanceToTrainZone(distance, segment) {
   }
   $('form .segment-' + segment + ' .zone.train').val(zone);
   doSubmit();
+}
+
+function error(message) {
+  if(! message) {
+    message = "Sorry, something went wrong.  If this keeps happening, please file a bug.";
+  }
+  $('.alert').text(message).removeClass('hidden');
+  $('button.compare').html(submit_button_html).removeAttr('disabled');
 }
 
 function initChart() {
