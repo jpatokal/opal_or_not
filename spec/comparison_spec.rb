@@ -40,6 +40,16 @@ describe Comparison do
       end
     end
 
+    describe '#savings' do
+      it 'returns weekly savings' do
+        @options.savings.should == 10.1
+      end
+
+      it 'returns yearly savings' do
+        @options.savings(52).should be_within(0.01).of(525.2) 
+      end
+    end
+
     describe '#table' do
       it 'returns fares in as Google Chart data table, in ascending order, Opal highlighted' do
         @options.table.should == [
@@ -69,7 +79,8 @@ describe Comparison do
             "week"=>@options.savings(1),
             "year"=>@options.savings(52)
           },
-          "table"=>@options.table
+          "table"=>@options.table,
+          "stats"=>{}
         }
       end
     end

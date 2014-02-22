@@ -4,6 +4,7 @@ GEM
     diff-lcs (1.2.5)
     haml (4.0.5)
       tilt
+    pg (0.17.1)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -27,6 +28,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  pg
   rr
   rspec
   sinatra

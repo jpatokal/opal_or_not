@@ -14,5 +14,5 @@ end
 
 post '/compute' do
   data = JSON.parse(request.body.read)
-  Comparison.new.compute(data).result.to_json
+  Comparison.new.compute(data).record.result.to_json
 end

@@ -1,8 +1,10 @@
 require_relative 'opal'
+require 'pg'
 
 class Comparison
   def initialize(options={})
     @options = options
+    @stats = {}
   end
 
   def fare_types
@@ -50,10 +52,29 @@ class Comparison
 
   def savings(weeks=1)
     if cheapest == 'Opal'
-      @options['Opal'] - @options[cheapest(false)]
+      @options[cheapest(false)] - @options['Opal']
     else
       @options['Opal'] - @options[cheapest]
     end * weeks
+  end
+
+  def record
+    row = cheapest == 'Opal' ? 'Opal' : 'Non-Opal'
+    conn = PGconn.open(:dbname => 'opaldb')
+    conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}';")
+    total = 0
+    conn.exec("SELECT name, count, sum FROM opal;") do |result|
+      result.each_row do |row|
+        name, count, sum = row
+        total += count.to_i
+        @stats[name.delete('-')] = { "count" => count.to_i, "sum" => sum.to_f }
+      end
+    end
+    @stats["count"] = total
+    @stats["Opal"]["percent"] = @stats["Opal"]["count"] * 100 / total
+    @stats["NonOpal"]["percent"] = @stats["NonOpal"]["count"] * 100 / total
+    conn.close
+    self
   end
 
   def result
@@ -64,7 +85,8 @@ class Comparison
         "week" => savings,
         "year" => savings(52)
       },
-      "table" => table
+      "table" => table,
+      "stats" => @stats
     }
   end
 end
