@@ -154,8 +154,20 @@
           .col-lg-12
             %p
             %p
-              After A comparisons, B% found Opal cheaper, saving a total of $C,
-              and C% found Opal more expensive, costing them an extra $D.
+              After
+              %span.count
+              comparisons,
+              = succeed "%" do
+                %span.opal-percent
+              found Opal cheaper, saving a total of $
+              %span.opal-sum
+              yearly, and
+              = succeed "%" do
+                %span.non-opal-percent
+              found Opal more expensive, costing them an extra $
+              %span.non-opal-sum
+              yearly.
+
         .row
           .col-sm-4
             %p

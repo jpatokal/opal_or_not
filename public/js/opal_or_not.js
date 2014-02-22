@@ -89,8 +89,13 @@ function doSubmit() {
     }
     $('.winner').text(json.winner);
     $('.alternative').text(json.alternative);
-    $('.weekly-savings').text("$" + Math.abs(json.savings.week).toFixed(2));
-    $('.yearly-savings').text("$" + Math.abs(json.savings.year).toFixed(2));
+    $('.weekly-savings').text("$" + json.savings.week.toFixed(2));
+    $('.yearly-savings').text("$" + json.savings.year.toFixed(2));
+    $('span.count').text(json.stats.count);
+    $('span.opal-percent').text(json.stats.Opal.percent);
+    $('span.opal-sum').text(json.stats.Opal.sum.toFixed(2));
+    $('span.non-opal-percent').text(json.stats.NonOpal.percent);
+    $('span.non-opal-sum').text(json.stats.NonOpal.sum.toFixed(2));
     $('.results').removeClass('hidden');
     drawChart(json.table);
     $('.social').addClass('social-likes').socialLikes(); // lazy load
