@@ -10,6 +10,17 @@ describe "integration" do
   end
 
   describe "fares" do
+    it "handles basic train zones correctly" do
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 10 }],
+        {"Opal"=>26.40, "MyTrain Weekly"=>28, "MyTrain Singles" => 38.0, "MyMulti" => 46}
+      )
+      compare(
+        [{ :mode => "train", :zone => 5, :count => 10 }],
+        {"Opal"=>60, "MyTrain Weekly"=>61, "MyTrain Singles" => 86.0, "MyMulti" => 63}
+      )
+    end
+
     it "handles ferry-ferry combos correctly" do
       compare(
         [{ :mode => "ferry", :zone => 1, :count => 10 }, { :mode => "ferry", :zone => 1, :count => 10 }],
@@ -18,33 +29,17 @@ describe "integration" do
     end
 
     it "handles bus-bus combos correctly" do
-      data = [{ :mode => "bus",   :zone => 3, :count => 10 }, { :mode => "bus",   :zone => 3, :count => 10 }]
-      options = Comparison.new.compute(data)
-      options.all.should == {"Opal"=>36, "MyMulti"=>46, "TravelTen"=>73.6}
+      compare(
+        [{ :mode => "bus",   :zone => 3, :count => 10 }, { :mode => "bus",   :zone => 3, :count => 10 }],
+        {"Opal"=>36, "MyMulti"=>46, "TravelTen"=>73.6}
+      )
     end
 
     it "handles train-bus combos correctly" do
-      data = [{ :mode => "train", :zone => 1, :count => 10 }, { :mode => "bus",   :zone => 2, :count => 10 }]
-      options = Comparison.new.compute(data)
-      options.all.should == {"Opal"=>54.4, "MyMulti"=>46}
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 10 }, { :mode => "bus",   :zone => 2, :count => 10 }],
+        {"Opal"=>54.4, "MyMulti"=>46}
+      )
     end
   end
 end
-
-samples = [
-  [{ :mode => "ferry", :zone => 1, :count => 8 }],
-  [{ :mode => "ferry", :zone => 1, :count => 9 }],
-  [{ :mode => "ferry", :zone => 1, :count => 10 }],
-  [{ :mode => "bus",   :zone => 3, :count => 9 }],
-  [{ :mode => "bus",   :zone => 3, :count => 10 }],
-  [{ :mode => "train", :zone => 5, :count => 9 }],
-  [{ :mode => "train", :zone => 5, :count => 10 }],
-]
-
-#samples.each do |data|
-#  puts data
-#  options = Comparison.new(data)
-#  puts options.all
-#  puts "Cheapest: #{options.cheapest}"
-#  puts "Savings over Opal: $%.02f" % options.savings
-#end
