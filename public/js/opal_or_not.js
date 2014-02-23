@@ -99,11 +99,15 @@ function doSubmit() {
     $('.results').removeClass('hidden');
     drawChart(json.table);
     $('.social').addClass('social-likes').socialLikes(); // lazy load
-    window.location.href = "#results";
+    goToByScroll("results");
   });
   jqXhr.always( function(data) {
     $('button.compare').html(submit_button_html).removeAttr('disabled');
   });
+}
+
+function goToByScroll(id){
+  $('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
 }
 
 // This would make more sense to do in the backend, but Google's quotas are
