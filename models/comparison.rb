@@ -60,7 +60,17 @@ class Comparison
 
   def record
     row = cheapest == 'Opal' ? 'Opal' : 'Non-Opal'
-    conn = PGconn.open(:dbname => 'app-dev')
+    if ENV['DATABASE_URL']
+      # Looks like we're on Heroku
+      db_parts = ENV['DATABASE_URL'].split(/\/|:|@/)
+      username = db_parts[3]
+      password = db_parts[4]
+      host = db_parts[5]
+      db = db_parts[7]
+      conn = PGconn.open(:host => host, :dbname => db, :user => username, :password => password)
+    else
+      conn = PGconn.open(:dbname => 'app-dev')
+    end
     conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}';")
     total = 0
     conn.exec("SELECT name, count, sum FROM opal;") do |result|
