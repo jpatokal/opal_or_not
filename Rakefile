@@ -12,6 +12,10 @@ task :deploy do
   sh "git push heroku master"
 end
 
+task :stats do
+  sh "heroku pg:psql <sql/stats.sql"
+end
+
 namespace :db do
   namespace :local do
     task :create do
