@@ -12,6 +12,10 @@ get '/faq' do
   haml :faq
 end
 
+get '/about' do
+  redirect 'http://gyrovague.com/2014/02/23/sydneys-screwed-up-smartcard-or-why-i-wrote-opal-or-not/'
+end
+
 post '/compute' do
   data = JSON.parse(request.body.read)
   Comparison.new.compute(data).record.result.to_json
