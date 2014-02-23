@@ -60,7 +60,7 @@ class Comparison
 
   def record
     row = cheapest == 'Opal' ? 'Opal' : 'Non-Opal'
-    conn = PGconn.open(:dbname => 'opaldb')
+    conn = PGconn.open(:dbname => 'app-dev')
     conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}';")
     total = 0
     conn.exec("SELECT name, count, sum FROM opal;") do |result|

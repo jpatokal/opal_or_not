@@ -1,2 +1,2 @@
-CREATE DATABASE opaldb;
+CREATE DATABASE "app-dev";
 
