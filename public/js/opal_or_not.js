@@ -98,9 +98,9 @@ function doSubmit() {
     $('.yearly-savings').text("$" + json.savings.year.toFixed(2));
     $('span.count').text(json.stats.count);
     $('span.opal-percent').text(json.stats.Opal.percent);
-    $('span.opal-average').text(json.stats.Opal.average.toFixed(2));
+    $('span.opal-average').text("$" + json.stats.Opal.average.toFixed(2));
     $('span.non-opal-percent').text(json.stats.NonOpal.percent);
-    $('span.non-opal-average').text(json.stats.NonOpal.average.toFixed(2));
+    $('span.non-opal-average').text("$" + json.stats.NonOpal.average.toFixed(2));
     $('.results').removeClass('hidden');
     drawChart(json.table);
     $('.social').addClass('social-likes').socialLikes(); // lazy load
