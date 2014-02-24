@@ -3,8 +3,13 @@ google.setOnLoadCallback(initChart);
 
 var chart;
 var options;
-var submit_button_html = $('form button.compare').html();
+var submitButtonHtml = $('form button.compare').html();
 var directionsService = new google.maps.DirectionsService();
+
+var cityStations = [
+  'Central (Sydney)', 'Town Hall', 'Wynyard', 'Circular Quay',
+  'Martin Place', 'Kings Cross', 'St. James', 'Museum'
+];
 
 // Open/close second trip segment
 $('form').on('click', 'button.transfer', function() {
@@ -102,7 +107,7 @@ function doSubmit() {
     goToByScroll("results");
   });
   jqXhr.always( function(data) {
-    $('button.compare').html(submit_button_html).removeAttr('disabled');
+    $('button.compare').html(submitButtonHtml).removeAttr('disabled');
   });
 }
 
@@ -151,10 +156,11 @@ function getTrainDistance(origin, destination, segment) {
       if(foundValidLeg) {
         var distance = response.routes[0].legs[i].distance.value / 1000;
         console.log('valid', i, distance);
-        // Add 2 km fudge factor for journeys to Town Hall (yes, WTF)
+        // Add 2 km fudge factor for journeys to/from city core
         // https://github.com/jpatokal/opal_or_not/issues/2
-        if(origin == 'Town Hall' || destination == 'Town Hall') {
+        if(isCityStation(origin) || isCityStation(destination)) {
           distance = distance + 2.0;
+          console.log('Adding fudge factor, new distance', distance);
         }
         distanceToTrainZone(distance, segment);
       } else {
@@ -164,6 +170,10 @@ function getTrainDistance(origin, destination, segment) {
       error();
     }
   });
+}
+
+function isCityStation(name) {
+  return ($.inArray(name, cityStations) > -1);
 }
 
 function distanceToTrainZone(distance, segment) {
@@ -188,7 +198,7 @@ function error(message) {
     message = "Sorry, something went wrong.  If this keeps happening, please file a bug.";
   }
   $('.alert').html(message).removeClass('hidden');
-  $('button.compare').html(submit_button_html).removeAttr('disabled');
+  $('button.compare').html(submitButtonHtml).removeAttr('disabled');
 }
 
 function initChart() {
