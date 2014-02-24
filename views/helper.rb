@@ -175,7 +175,6 @@ class Helper
       "St Marys",
       "St Peters",
       "Stanmore",
-      "Station",
       "Strathfield",
       "Summer Hill",
       "Sutherland",
