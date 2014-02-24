@@ -15,7 +15,14 @@
           %h1 Frequently asked questions
 
         %h5 What fares is this comparing?
-        %p Adult full fares for Opal, MyMulti, TravelTen (bus & ferry), MyTrain Weekly and MyTrain Singles.
+        %p Adult full fares for Opal, MyMulti, TravelTen (bus & ferry), MyTrain Weekly and MyTrain Singles, with any transfers within 60 minutes.
+
+        %h5 Why is my train station not listed?
+        %p
+          Opal is only being rolled out on the
+          = succeed "." do
+            %a{href: "http://www.sydneytrains.info/stations/network_map"} Sydney Trains network
+          NSW TrainLink stations (west of Emu Plains, north of Berowra or south of Macarthur/Waterfall) are not covered by Opal.
 
         %h5 Where's light rail/tram?
         %p Opal has not released its fares yet.
@@ -38,8 +45,7 @@
           So depending on your route and destination, the computed fare may be based on an Opal band or MyMulti/MyBus/MyTrain ticket class that's actually cheaper or more expensive that what you need to buy.
         %p
           Also,
-          = succeed "," do
-            %a{href: '#disclaimer'} please beware
+          %a{href: '#disclaimer'} please beware
           that these fare calculations are in no way vetted or approved by Transport for NSW, and may contain faulty numbers or faulty logic.
           %a{href: 'https://github.com/jpatokal/opal_or_not/issues'} Bug reports
           are welcome.
