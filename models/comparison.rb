@@ -1,6 +1,8 @@
+require 'pg'
+
 require_relative 'opal'
 require_relative 'my_multi'
-require 'pg'
+require_relative 'train'
 
 class Comparison
   def initialize(options={})
@@ -9,7 +11,12 @@ class Comparison
   end
 
   def fare_types
-    [Opal, MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly, TravelTen, TrainSingle, Weekly]
+    [
+      Opal,
+      TravelTen,
+      TrainSingle, TrainWeekly, TrainMonthly, TrainQuarterly,
+      MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly
+    ]
   end
 
   def compute(data)
