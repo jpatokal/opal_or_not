@@ -31,7 +31,7 @@ function selectModeHandler(segment) {
 }
 selectModeHandler('.segment-1');
 selectModeHandler('.segment-2');
-$('form .segment-1 select.destination').val('Central');
+$('form .segment-1 select.destination').val('Central (Sydney)');
 
 // Compute fares
 $('form').on('click', 'button.compare', function() {
@@ -93,9 +93,9 @@ function doSubmit() {
     $('.yearly-savings').text("$" + json.savings.year.toFixed(2));
     $('span.count').text(json.stats.count);
     $('span.opal-percent').text(json.stats.Opal.percent);
-    $('span.opal-sum').text(json.stats.Opal.sum.toFixed(2));
+    $('span.opal-average').text(json.stats.Opal.average.toFixed(2));
     $('span.non-opal-percent').text(json.stats.NonOpal.percent);
-    $('span.non-opal-sum').text(json.stats.NonOpal.sum.toFixed(2));
+    $('span.non-opal-average').text(json.stats.NonOpal.average.toFixed(2));
     $('.results').removeClass('hidden');
     drawChart(json.table);
     $('.social').addClass('social-likes').socialLikes(); // lazy load

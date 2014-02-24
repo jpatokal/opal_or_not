@@ -82,7 +82,9 @@ class Comparison
     end
     @stats["count"] = total
     @stats["Opal"]["percent"] = @stats["Opal"]["count"] * 100 / total
+    @stats["Opal"]["average"] = @stats["Opal"]["sum"] / @stats["Opal"]["count"]
     @stats["NonOpal"]["percent"] = @stats["NonOpal"]["count"] * 100 / total
+    @stats["NonOpal"]["average"] = @stats["NonOpal"]["sum"] / @stats["NonOpal"]["count"]
     conn.close
     self
   end
