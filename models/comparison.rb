@@ -1,4 +1,5 @@
 require_relative 'opal'
+require_relative 'my_multi'
 require 'pg'
 
 class Comparison
@@ -8,7 +9,7 @@ class Comparison
   end
 
   def fare_types
-    [Opal, MyMulti, TravelTen, TrainSingle, Weekly]
+    [Opal, MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly, TravelTen, TrainSingle, Weekly]
   end
 
   def compute(data)

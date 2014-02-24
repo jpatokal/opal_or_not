@@ -1,6 +1,10 @@
 class Fare
   attr_reader :data
 
+  def fare_table
+    raise "Fare table not defined"
+  end
+
   def initialize(data=[])
     data = data.map do |hash|
       hash = hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
@@ -42,40 +46,6 @@ class Fare
     else
       fares.reduce(:+)
     end
-  end
-end
-
-class MyMulti < Fare
-  def fare_table
-    {
-      "bus" => {
-        1 => 46,
-        2 => 46,
-        3 => 46
-      },
-      "train" => {
-        1 => 46,
-        2 => 46,
-        3 => 54,
-        4 => 54,
-        5 => 63
-      },
-      "ferry" => {
-        1 => 54,
-        2 => 54
-      }
-    }
-  end
-
-  def compute_journey
-    # MyMulti option that covers most expensive single segment suffices for entire journey
-    [@data.map do |segment|
-      compute_segment segment
-    end.sort.last]
-  end
-
-  def compute_segment(segment)
-    single segment
   end
 end
 
