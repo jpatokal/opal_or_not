@@ -41,7 +41,7 @@ class Helper
       "Carlton",
       "Carramar",
       "Casula",
-      "Central",
+      "Central (Sydney)",
       "Chatswood",
       "Cheltenham",
       "Chester Hill",
