@@ -213,7 +213,7 @@ function initChart() {
     animation: { duration: 500, easing: "out" },
     chartArea: { left: 0, top: 10, height: 140 },
     fontName: 'Georgia,"Times New Roman",Times,serif',
-    fontSize: 20,
+    fontSize: 16,
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },
     vAxis: { textPosition: "in", textStyle: {color: 'white', auraColor: 'gray' } },
     legend: { position: "none" },
