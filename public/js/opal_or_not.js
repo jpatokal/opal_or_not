@@ -151,6 +151,11 @@ function getTrainDistance(origin, destination, segment) {
       if(foundValidLeg) {
         var distance = response.routes[0].legs[i].distance.value / 1000;
         console.log('valid', i, distance);
+        // Add 2 km fudge factor for journeys to Town Hall (yes, WTF)
+        // https://github.com/jpatokal/opal_or_not/issues/2
+        if(origin == 'Town Hall' || destination == 'Town Hall') {
+          distance = distance + 2.0;
+        }
         distanceToTrainZone(distance, segment);
       } else {
         error("Sorry, couldn't work out a sensible route between those two stations.  Try a bus instead?");
