@@ -22,9 +22,10 @@ class Fare
 
   def single(segment)
     begin
-      fare_table[segment[:mode]][segment[:zone]]
+      fare_table[segment[:mode]][segment[:zone]] ||
+        (raise "No fare found in class #{self.class.name} for segment #{segment}, zone mismatch")
     rescue
-      raise "No fare found in class #{self.class.name} for segment #{segment}"
+      raise "No fare found in class #{self.class.name} for segment #{segment}, mode mismatch"
     end
   end
 

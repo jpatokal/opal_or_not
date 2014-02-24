@@ -23,10 +23,24 @@ class Opal < Fare
   end
 
   def compute_day(one_way=false)
+    # For each mode, new zone is sum of all zones, capped out at highest zone for that mode
+    new_zone = {}
+    @data.map {|a| a[:mode]}.each do |mode|
+      new_zone[mode] = [
+        @data.select {|a| a[:mode] == mode}.reduce(0) {|sum, a| sum + a[:zone]} ,
+        fare_table[mode].keys.max
+      ].min
+    end
+
     # Collapse repeated modes
     daily_fare = @data.uniq {|a| a[:mode]}.map do |segment|
-      single(segment) * (one_way ? 1 : 2)
+      new_segment = {
+        :mode => segment[:mode],
+        :zone => new_zone[segment[:mode]]
+      }
+      single(new_segment) * (one_way ? 1 : 2)
     end.reduce(:+)
+
     # Apply daily cap
     daily_fare = 15 if daily_fare > 15
     daily_fare

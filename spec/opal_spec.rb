@@ -1,12 +1,20 @@
 require 'spec_helper'
  
 describe Opal do
-  it "counts multiple segments on same mode as one" do
+  it "sums up zones on same mode to estimate final zone" do
     opal = Opal.new([
       {:mode => "bus", :zone => 1, :count => 1},
       {:mode => "bus", :zone => 1, :count => 1}
     ])
-    opal.compute.should == opal.fare_table["bus"][1]
+    opal.compute.should == opal.fare_table["bus"][2]
+  end
+
+  it "caps maximum combined bus zone at 3" do
+    opal = Opal.new([
+      {:mode => "bus", :zone => 2, :count => 1},
+      {:mode => "bus", :zone => 3, :count => 1}
+    ])
+    opal.compute.should == opal.fare_table["bus"][3]
   end
 
   it "counts segments on different modes separately" do
