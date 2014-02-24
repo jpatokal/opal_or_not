@@ -158,7 +158,7 @@ function getTrainDistance(origin, destination, segment) {
         }
         distanceToTrainZone(distance, segment);
       } else {
-        error("Sorry, couldn't work out a sensible route between those two stations.  Try a bus instead?");
+        error("Sorry, couldn't work out a sensible route between those two stations.  <a href='/faq#trybus'>Try a bus instead?</a>");
       }
     } else {
       error();
@@ -187,7 +187,7 @@ function error(message) {
   if(! message) {
     message = "Sorry, something went wrong.  If this keeps happening, please file a bug.";
   }
-  $('.alert').text(message).removeClass('hidden');
+  $('.alert').html(message).removeClass('hidden');
   $('button.compare').html(submit_button_html).removeAttr('disabled');
 }
 

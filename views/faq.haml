@@ -43,7 +43,10 @@
           %ul
             %li Opal bus bands do not match MyBus zones exactly.
             %li MyMulti zones do not match Opal bands or MyBus/MyTrain distances exactly.
-            %li Distance between train stations, which used for determining train fare zone, may not match official distance.
+            %li
+              Distances to/from City stations do not account for the
+              %a{href: "http://www.shittytrains.info/tickets/pdf/Passenger_Fares_Handbook.pdf"} magic 3.21&nbsp;km
+              used by the official fare rules.
         %p
           So depending on your route and destination, the computed fare may be based on an Opal band or MyMulti/MyBus/MyTrain ticket class that's actually cheaper or more expensive that what you need to buy.
         %p
@@ -52,6 +55,12 @@
           that these fare calculations are in no way vetted or approved by Transport for NSW, and may contain faulty numbers or faulty logic.
           %a{href: 'https://github.com/jpatokal/opal_or_not/issues'} Bug reports
           are welcome.
+
+        %h5#trybus I'm trying to enter a trip between two train stations, why is it telling me to use a bus instead?
+        %p
+          If there's a (theoretically) faster bus connection, the
+          %a{href: "https://developers.google.com/maps/documentation/directions/"} Google Directions API
+          used under the hood will not suggest any trains, so it can't figure out the distance between them.  Try another nearby train station.
 
         %h5 Who's behind this and why?
         %p
