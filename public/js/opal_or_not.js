@@ -106,6 +106,9 @@ function doSubmit() {
     $('.social').addClass('social-likes').socialLikes(); // lazy load
     goToByScroll("results");
   });
+  jqXhr.fail( function(data) {
+    error();
+  });
   jqXhr.always( function(data) {
     $('button.compare').html(submitButtonHtml).removeAttr('disabled');
   });
@@ -195,7 +198,8 @@ function distanceToTrainZone(distance, segment) {
 
 function error(message) {
   if(! message) {
-    message = "Sorry, something went wrong.  If this keeps happening, please file a bug.";
+    message = "Sorry, something went wrong.  If this keeps happening, please take a screenshot " +
+      "and <a href='https://github.com/jpatokal/opal_or_not/issues'>file a bug</a>.";
   }
   $('.alert').html(message).removeClass('hidden');
   $('button.compare').html(submitButtonHtml).removeAttr('disabled');
