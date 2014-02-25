@@ -123,8 +123,8 @@ function getTrainDistance(origin, destination, segment) {
   rushHour.setDate(rushHour.getDate() + 1);
   rushHour.setHours(9,0,0,0);
   var request = {
-      origin: origin + " train station, NSW",
-      destination: destination + " train station, NSW",
+      origin: origin + " station, NSW",
+      destination: destination + " station, NSW",
       transitOptions: {
         departureTime: rushHour
       },
