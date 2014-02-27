@@ -8,6 +8,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
+    rake (10.1.0)
     rr (1.1.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -29,6 +30,7 @@ PLATFORMS
 DEPENDENCIES
   haml
   pg
+  rake
   rr
   rspec
   sinatra
