@@ -8,9 +8,9 @@ class MyMulti < Fare
       },
       "train" => {
         1 => zone[1],
-        2 => zone[1],
+        2 => zone[2],
         3 => zone[2],
-        4 => zone[2],
+        4 => zone[3],
         5 => zone[3]
       },
       "ferry" => {
