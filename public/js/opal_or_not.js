@@ -219,7 +219,7 @@ function initChart() {
     fontName: 'Georgia,"Times New Roman",Times,serif',
     fontSize: 16,
     hAxis: { gridlines: { count: 0 }, minValue: 0, ticks: [] },
-    vAxis: { textPosition: "in", textStyle: {color: 'white', auraColor: 'gray' } },
+    vAxis: { textPosition: "in", textStyle: {color: 'white', auraColor: 'none' } },
     legend: { position: "none" },
     tooltip: { trigger: "none" }
   };
