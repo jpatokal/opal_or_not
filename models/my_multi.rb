@@ -15,7 +15,7 @@ class MyMulti < Fare
       },
       "ferry" => {
         1 => zone[2],
-        2 => zone[2]
+        2 => zone[3]
       }
     }
   end
