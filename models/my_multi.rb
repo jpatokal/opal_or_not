@@ -55,7 +55,7 @@ class MyMultiMonthly < MyMulti
   end
 
   def zone
-    [0, 175.0, 206.0, 246.0].map {|a| a / (28 / 7)}
+    [0, 175.0, 206.0, 246.0].map {|a| a / (28.0 / 7.0)}
   end
 end
 
@@ -65,6 +65,6 @@ class MyMultiQuarterly < MyMulti
   end
 
   def zone
-    [0, 484.0, 567.0, 676.0].map {|a| a / (90 / 7)}
+    [0, 484.0, 567.0, 676.0].map {|a| a / (90.0 / 7.0)}
   end
 end

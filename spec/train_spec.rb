@@ -27,6 +27,6 @@ describe Train do
   end
 
   it "converts quarterly to weekly correctly" do
-    TrainQuarterly.new.fare_table["train"][1].should be_within(0.01).of(23.33)
+    TrainQuarterly.new.fare_table["train"][1].should be_within(0.01).of(21.77)
   end
 end

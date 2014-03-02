@@ -21,6 +21,6 @@ describe MyMulti do
   end
 
   it "converts quarterly to weekly correctly" do
-    MyMultiQuarterly.new.fare_table["train"][1].should be_within(0.01).of(40.33)
+    MyMultiQuarterly.new.fare_table["train"][1].should be_within(0.01).of(37.64)
   end
 end

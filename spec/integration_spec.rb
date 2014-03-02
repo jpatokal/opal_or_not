@@ -26,7 +26,7 @@ describe "integration" do
     it "handles ferry-ferry combos correctly" do
       compare(
         [{ :mode => "ferry", :zone => 1, :count => 10 }, { :mode => "ferry", :zone => 1, :count => 10 }],
-        {"Opal"=>56, "MyMulti Weekly"=>54, "MyMulti Monthly"=>51.5, "MyMulti Quarterly"=>47.25, "TravelTen"=>96}
+        {"Opal"=>56, "MyMulti Weekly"=>54, "MyMulti Monthly"=>51.5, "MyMulti Quarterly"=>44.1, "TravelTen"=>96}
       )
     end
 

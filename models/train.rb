@@ -58,7 +58,7 @@ class TrainMonthly < TrainWeekly
   end
 
   def zone
-    [102.0, 127.0, 149.0, 189.0, 222.0].map {|a| a / (28 / 7)}
+    [102.0, 127.0, 149.0, 189.0, 222.0].map {|a| a / (28.0 / 7.0)}
   end
 end
 
@@ -68,6 +68,6 @@ class TrainQuarterly < TrainWeekly
   end
 
   def zone
-    [280.0, 350.0, 410.0, 520.0, 610.0].map {|a| a / (90 / 7)}
+    [280.0, 350.0, 410.0, 520.0, 610.0].map {|a| a / (90.0 / 7.0)}
   end
 end
