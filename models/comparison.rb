@@ -5,8 +5,9 @@ require_relative 'my_multi'
 require_relative 'train'
 
 class Comparison
-  def initialize(options={})
+  def initialize(data={}, options={})
     @options = options
+    @data = data
     @stats = {}
   end
 
@@ -19,9 +20,9 @@ class Comparison
     ]
   end
 
-  def compute(data)
+  def compute()
     fare_types.each do |type|
-      fare_class = type.new(data)
+      fare_class = type.new(@data)
       fare = fare_class.compute
       @options[fare_class.name] = fare if fare
     end

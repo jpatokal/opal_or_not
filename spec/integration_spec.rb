@@ -2,12 +2,9 @@ require 'spec_helper'
  
 describe "integration" do
   def compare(data, expected_output, unwanted_keys=[])
-    @options.compute(data).all.should include(expected_output)
-    @options.compute(data).all.keys.should_not include(unwanted_keys)
-  end
-
-  before :each do
-    @options = Comparison.new
+    @options = Comparison.new(data)
+    @options.compute.all.should include(expected_output)
+    @options.compute.all.keys.should_not include(unwanted_keys)
   end
 
   describe "fares" do
