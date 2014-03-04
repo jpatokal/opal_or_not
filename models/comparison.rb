@@ -19,6 +19,10 @@ class Comparison
     @stats = {}
   end
 
+  def mode_string
+    data.map {|m| m[:mode]}.join('+')
+  end
+
   def fare_types
     [
       Opal,
@@ -88,7 +92,8 @@ class Comparison
     else
       conn = PGconn.open(:dbname => 'app-dev')
     end
-    conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}';")
+    print "mode_string", mode_string
+    conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}' and mode='#{mode_string}';")
     total = 0
     conn.exec("SELECT name, count, sum FROM opal;") do |result|
       result.each_row do |row|
@@ -99,9 +104,9 @@ class Comparison
     end
     @stats["count"] = total
     @stats["Opal"]["percent"] = @stats["Opal"]["count"] * 100 / total
-    @stats["Opal"]["average"] = @stats["Opal"]["sum"] / @stats["Opal"]["count"]
+    @stats["Opal"]["average"] = @stats["Opal"]["sum"] / @stats["Opal"]["count"] if @stats["Opal"]["count"] > 0
     @stats["NonOpal"]["percent"] = @stats["NonOpal"]["count"] * 100 / total
-    @stats["NonOpal"]["average"] = @stats["NonOpal"]["sum"] / @stats["NonOpal"]["count"]
+    @stats["NonOpal"]["average"] = @stats["NonOpal"]["sum"] / @stats["NonOpal"]["count"] if @stats["NonOpal"]["count"] > 0
     conn.close
     self
   end

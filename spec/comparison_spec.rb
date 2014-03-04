@@ -31,6 +31,12 @@ describe Comparison do
     end
   end
 
+  describe "#mode_string" do
+    it "returns a string describing used modes of travel" do 
+      Comparison.new([{:mode => 'camel'}, {:mode => 'tuktuk'}]).mode_string.should == 'camel+tuktuk'
+    end
+  end
+
   describe 'when computing' do
     before :each do
       @comparison = Comparison.new()
