@@ -5,9 +5,17 @@ require_relative 'my_multi'
 require_relative 'train'
 
 class Comparison
-  def initialize(data={}, options={})
+  attr_reader :data
+
+  def initialize(data=[], options={})
     @options = options
-    @data = data
+    @data = data.map do |hash|
+      hash = hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      [:count, :zone].each do |key|
+        hash[key] = hash[key].to_i if hash[key]
+      end
+      hash
+    end.sort {|a,b| a[:mode] <=> b[:mode]}
     @stats = {}
   end
 

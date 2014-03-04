@@ -11,6 +11,26 @@ class TestFare < Fare
 end
 
 describe Comparison do
+  describe "#new" do
+    it "turns string keys into symbols" do
+      data = [{"mode" => "a", "zombie" => "b"}]
+      comparison = Comparison.new(data)
+      comparison.data.should == [{:mode => "a", :zombie => "b"}]
+    end
+
+    it "converts count, zone into numbers" do
+      data = [{:mode => "z", :count => "69", :zone => "42"}]
+      comparison = Comparison.new(data)
+      comparison.data.should == [{:mode => "z", :count => 69, :zone => 42}]
+    end
+
+    it "sorts data by mode of travel" do
+      data = [{:mode => :z}, {:mode => :a}, {:mode => :a}]
+      comparison = Comparison.new(data)
+      comparison.data.should == [{:mode => :a}, {:mode => :a}, {:mode => :z}]
+    end
+  end
+
   describe 'when computing' do
     before :each do
       @comparison = Comparison.new()
@@ -26,7 +46,7 @@ describe Comparison do
 
   describe 'with results already computed' do
     before :each do
-      @comparison = Comparison.new(nil, {'Gopal' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
+      @comparison = Comparison.new([], {'Gopal' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
     end
 
     describe '#cheapest' do
@@ -60,7 +80,7 @@ describe Comparison do
       end
 
       it 'highlights both Opal and the lowest fare if different' do
-        Comparison.new(nil, {'Gopal' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
+        Comparison.new([], {'Gopal' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
           ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
           ['Nopal', 10.10, '#3FAD46', '$10.10'],
           ['Opal', 20.20, '#4582EC', '$20.20'],

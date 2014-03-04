@@ -6,14 +6,7 @@ class Fare
   end
 
   def initialize(data=[])
-    data = data.map do |hash|
-      hash = hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
-      [:count, :zone].each do |key|
-        hash[key] = hash[key].to_i if hash[key]
-      end
-      hash
-    end
-    @data = data.sort {|a,b| a[:mode] <=> b[:mode]}
+    @data = data
   end
 
   def name
