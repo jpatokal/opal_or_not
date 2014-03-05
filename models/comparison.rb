@@ -95,7 +95,7 @@ class Comparison
     print "mode_string", mode_string
     conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}' and mode='#{mode_string}';")
     total = 0
-    conn.exec("SELECT name, count, sum FROM opal;") do |result|
+    conn.exec("SELECT name, SUM(count), SUM(sum) FROM opal GROUP BY name;") do |result|
       result.each_row do |row|
         name, count, sum = row
         total += count.to_i
