@@ -56,17 +56,31 @@
                       %option{value: 1} MyFerry 1
                       %option{value: 2} MyFerry 2
                 .col-md-8.train.selector
-                  %label.col-md-1.control-label from
-                  .col-md-4
-                    %select.origin.form-control
-                      - Helper.train_stations.each do |station|
-                        %option= station
-                  %label.col-md-1.control-label to
-                  .col-md-4
-                    %select.destination.form-control
-                      - Helper.train_stations.each do |station|
-                        %option= station
-                  %input.zone.train{type: "hidden", value: 1} 
+                  .row
+                    %label.col-md-1.control-label from
+                    .col-md-4
+                      %select.origin.form-control
+                        - Helper.train_stations.each do |station|
+                          %option= station
+                    %label.col-md-1.control-label to
+                    .col-md-4
+                      %select.destination.form-control
+                        - Helper.train_stations.each do |station|
+                          %option= station
+                  .row
+                    %label.col-md-2.control-label leaving
+                    .col-md-3
+                      %select.am.form-control
+                        %option{value: "before"} before 7 AM
+                        %option{value: "peak", selected: "true"} 7-9 AM
+                        %option{value: "after"} after 9 AM
+                    %label.col-md-2.control-label returning
+                    .col-md-3
+                      %select.pm.form-control
+                        %option{value: "before"} before 4 PM
+                        %option{value: "peak", selected: "true"} 4-6:30 PM
+                        %option{value: "after"} after 6:30 PM
+                    %input.zone.train{type: "hidden", value: 1} 
 
               .form-group.segment-2.hidden
                 %label.col-md-2.control-label and
@@ -89,17 +103,31 @@
                       %option{value: 1} MyFerry 1
                       %option{value: 2} MyFerry 2
                 .col-md-8.train.selector.hidden
-                  %label.col-md-1.control-label from
-                  .col-md-4
-                    %select.origin.form-control
-                      - Helper.train_stations.each do |station|
-                        %option= station
-                  %label.col-md-1.control-label to
-                  .col-md-4
-                    %select.destination.form-control
-                      - Helper.train_stations.each do |station|
-                        %option= station
-                  %input.zone.train{type: "hidden", value: 1} 
+                  .row
+                    %label.col-md-1.control-label from
+                    .col-md-4
+                      %select.origin.form-control
+                        - Helper.train_stations.each do |station|
+                          %option= station
+                    %label.col-md-1.control-label to
+                    .col-md-4
+                      %select.destination.form-control
+                        - Helper.train_stations.each do |station|
+                          %option= station
+                  .row
+                    %label.col-md-2.control-label leaving
+                    .col-md-3
+                      %select.am.form-control
+                        %option{value: "before"} before 7 AM
+                        %option{value: "peak", selected: "true"} 7-9 AM
+                        %option{value: "after"} after 9 AM
+                    %label.col-md-2.control-label returning
+                    .col-md-3
+                      %select.pm.form-control
+                        %option{value: "before"} before 4 PM
+                        %option{value: "peak", selected: "true"} 4-6:30 PM
+                        %option{value: "after"} after 6:30 PM
+                    %input.zone.train{type: "hidden", value: 1} 
 
               .form-group
                 .col-xs-2.col-md-offset-2

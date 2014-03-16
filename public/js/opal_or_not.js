@@ -66,24 +66,25 @@ $('form').on('click', 'button.compare', function() {
   doSubmit();
 });
 
-function doSubmit() {
-  var mode = $('form .segment-1 .mode').val();
-  var data = [
-    { "mode": mode,
-      "zone": $('form .segment-1 .zone.' + mode).val(),
-      "count": $('form .count').val() }
-  ];
-  if(hasTransfer()) {
-    mode = $('form .segment-2 .mode').val();
-    data.push({
-      "mode": mode,
-      "zone": $('form .segment-2 .zone.' + mode).val(),
-      "count": $('form .count').val()
-    });
-  }
-  tripData = JSON.stringify(data);
+function collectData(segment) {
+  var mode = $('form ' + segment + ' .mode').val();
+  return { "mode": mode,
+           "zone": $('form ' + segment + ' .zone.' + mode).val(),
+           "count": $('form .count').val(),
+           "time": {
+             "am": $('form ' + segment + ' .am').val(),
+             "pm": $('form ' + segment + ' .pm').val()
+           }};
+}
 
-  jqXhr = $.post("/compute", tripData).done( function(data) {
+function doSubmit() {
+  var data = [ collectData('.segment-1') ]
+  if(hasTransfer()) {
+    data.push(collectData('.segment-2'));
+  }
+  jsonData = JSON.stringify(data);
+
+  jqXhr = $.post("/compute", jsonData).done( function(data) {
     json = JSON.parse(data);
     if(json.winner == 'Opal') {
       $(".opal-wins").removeClass('hidden');
