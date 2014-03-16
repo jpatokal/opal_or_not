@@ -4,6 +4,7 @@ describe "integration" do
   def compare(data, expected_output, unwanted_keys=[])
     result  = Comparison.new(data).compute.all
     expected_output.each do |key,value|
+      result.keys.should include(key)
       result[key].should be_within(0.01).of(value)
     end
     result.keys.should_not include(unwanted_keys)
@@ -24,9 +25,19 @@ describe "integration" do
 
     it "handles off-peak trains correctly" do
       compare(
-        [{ :mode => "train", :zone => 1, :count => 4, :time => {:am => 'after'} }],
-        {"Opal"=>9.24, "MyTrain Off-Peak Returns"=>10.0, "MyTrain Singles"=>15.2},
+        [{ :mode => "train", :zone => 1, :count => 4, :time => {:am => 'after', :pm => 'peak'} }],
+        {"Opal"=>11.22, "MyTrain Off-Peak Returns"=>10.0, "MyTrain Singles"=>15.2},
         ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
+      )
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'after', :pm => 'after'} }],
+        {"Opal"=>18.48, "MyTrain Off-Peak Returns"=>25.0, "MyTrain Singles"=>38},
+        ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
+      )
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'before', :pm => 'before'} }],
+        {"Opal"=>18.48, "MyTrain Weekly"=>28, "MyTrain Singles"=>38},
+        ["MyTrain Off-Peak Returns", "MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
     end
 
@@ -46,8 +57,14 @@ describe "integration" do
 
     it "handles train-bus combos correctly" do
       compare(
-        [{ :mode => "train", :zone => 1, :count => 10 }, { :mode => "bus",   :zone => 2, :count => 10 }],
+        [{ :mode => "train", :zone => 1, :count => 10 },
+         { :mode => "bus",   :zone => 2, :count => 10 }],
         {"Opal"=>54.4, "MyMulti Weekly"=>46}
+      )
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'before', :pm => 'after'} },
+         { :mode => "bus",   :zone => 2, :count => 10 }],
+        {"Opal"=>46.48, "MyMulti Weekly"=>46}
       )
     end
   end
