@@ -2,9 +2,11 @@ require 'spec_helper'
  
 describe "integration" do
   def compare(data, expected_output, unwanted_keys=[])
-    @options = Comparison.new(data)
-    @options.compute.all.should include(expected_output)
-    @options.compute.all.keys.should_not include(unwanted_keys)
+    result  = Comparison.new(data).compute.all
+    expected_output.each do |key,value|
+      result[key].should be_within(0.01).of(value)
+    end
+    result.keys.should_not include(unwanted_keys)
   end
 
   describe "fares" do
@@ -23,7 +25,7 @@ describe "integration" do
     it "handles off-peak trains correctly" do
       compare(
         [{ :mode => "train", :zone => 1, :count => 4, :time => {:am => 'after'} }],
-        {"Opal"=>13.20, "MyTrain Off-Peak Returns"=>10.0, "MyTrain Singles"=>15.2},
+        {"Opal"=>9.24, "MyTrain Off-Peak Returns"=>10.0, "MyTrain Singles"=>15.2},
         ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
     end

@@ -13,9 +13,9 @@ end
 describe Comparison do
   describe "#new" do
     it "turns string keys into symbols" do
-      data = [{"mode" => "a", "zombie" => "b"}]
+      data = [{"mode" => "a", "zombie" => "b", "time" => {"am" => "first", "pm" => "last"}}]
       comparison = Comparison.new(data)
-      comparison.data.should == [{:mode => "a", :zombie => "b"}]
+      comparison.data.should == [{:mode => "a", :zombie => "b", :time => {:am => "first", :pm => "last"}}]
     end
 
     it "converts count, zone into numbers" do

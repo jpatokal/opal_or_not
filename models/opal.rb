@@ -22,6 +22,18 @@ class Opal < Fare
     }
   end
 
+  def off_peak_discount(segment)
+    if segment[:time]
+      case segment[:time].values.count('peak')
+      when 0
+        return 0.7 # return off-peak, 30% off
+      when 1
+        return 0.85 # single off-peak, 15% off
+      end
+    end
+    1.0 # full fare
+  end
+
   def compute_day(one_way=false)
     # For each mode, new zone is sum of all zones, capped out at highest zone for that mode
     new_zone = {}
@@ -36,9 +48,10 @@ class Opal < Fare
     daily_fare = @data.uniq {|a| a[:mode]}.map do |segment|
       new_segment = {
         :mode => segment[:mode],
-        :zone => new_zone[segment[:mode]]
+        :zone => new_zone[segment[:mode]],
+        :time => segment[:time]
       }
-      single(new_segment) * (one_way ? 1 : 2)
+      single(new_segment) * off_peak_discount(new_segment) * (one_way ? 1 : 2)
     end.reduce(:+)
 
     # Apply daily cap

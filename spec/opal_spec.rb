@@ -25,6 +25,28 @@ describe Opal do
     opal.compute.should == opal.fare_table["bus"][1] + opal.fare_table["train"][1]
   end
 
+  it "applies off-peak discounts when applicable" do
+    FULL_FARE, ONE_DISCOUNT, TWO_DISCOUNTS = [4.70 * 2, 4.70 + 3.29, 3.29 * 2].map {|x| x * 3}
+    time_combos = [
+      [{:am => 'before', :pm => 'before'}, TWO_DISCOUNTS],
+      [{:am => 'before', :pm => 'peak'},   ONE_DISCOUNT],
+      [{:am => 'before', :pm => 'after'},  TWO_DISCOUNTS],
+      [{:am => 'peak',   :pm => 'before'}, ONE_DISCOUNT],
+      [{:am => 'peak',   :pm => 'peak'},   FULL_FARE],
+      [{:am => 'peak',   :pm => 'after'},  ONE_DISCOUNT],
+      [{:am => 'after',  :pm => 'before'}, TWO_DISCOUNTS],
+      [{:am => 'after',  :pm => 'peak'},   ONE_DISCOUNT],
+      [{:am => 'after',  :pm => 'after'},  TWO_DISCOUNTS]
+    ]
+    time_combos.each do |combo|
+      time, expected = combo
+      opal = Opal.new([
+       {:mode => "train", :zone => 3, :count => 6, :time => time}
+      ])
+      opal.compute.should be_within(0.01).of(expected)
+    end
+  end
+
   it "applies a daily cap of $15" do
     opal = Opal.new([
       {:mode => "bus", :zone => 3, :count => 2},

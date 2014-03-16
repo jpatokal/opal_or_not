@@ -10,13 +10,18 @@ class Comparison
   def initialize(data=[], options={})
     @options = options
     @data = data.map do |hash|
-      hash = hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+      hash = str_to_sym hash
       [:count, :zone].each do |key|
         hash[key] = hash[key].to_i if hash[key]
       end
+      hash[:time] = str_to_sym(hash[:time]) if hash[:time]
       hash
     end.sort {|a,b| a[:mode] <=> b[:mode]}
     @stats = {}
+  end
+
+  def str_to_sym hash
+    hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
   end
 
   def mode_string
