@@ -27,7 +27,7 @@ class Comparison
     [
       Opal,
       TravelTen,
-      TrainSingle, TrainWeekly, TrainMonthly, TrainQuarterly,
+      TrainSingle, TrainOffPeakReturn, TrainWeekly, TrainMonthly, TrainQuarterly,
       MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly
     ]
   end

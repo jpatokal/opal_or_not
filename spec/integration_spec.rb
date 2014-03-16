@@ -20,6 +20,14 @@ describe "integration" do
       )
     end
 
+    it "handles off-peak trains correctly" do
+      compare(
+        [{ :mode => "train", :zone => 1, :count => 4, :time => {:am => 'after'} }],
+        {"Opal"=>13.20, "MyTrain Off-Peak Returns"=>10.0, "MyTrain Singles"=>15.2},
+        ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
+      )
+    end
+
     it "handles ferry-ferry combos correctly" do
       compare(
         [{ :mode => "ferry", :zone => 1, :count => 10 }, { :mode => "ferry", :zone => 1, :count => 10 }],

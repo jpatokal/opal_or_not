@@ -34,6 +34,24 @@ class TrainSingle < Train
   end
 end
 
+class TrainOffPeakReturn < TrainSingle
+  def name
+    "MyTrain Off-Peak Returns"
+  end
+
+  def zone
+    [5.00, 6.20, 7.00, 9.20, 11.80]
+  end
+
+  def compute_segment(segment)
+    if segment[:mode] == "train" and segment[:time] and segment[:time][:am] == "after"
+      (single(segment) * segment[:count] * 50).to_i / 100.0
+    else
+      nil
+    end
+  end
+end
+
 class TrainWeekly < Train
   def name
     "MyTrain Weekly"
