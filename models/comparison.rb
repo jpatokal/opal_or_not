@@ -37,7 +37,7 @@ class Comparison
     ]
   end
 
-  def compute()
+  def compute
     fare_types.each do |type|
       fare_class = type.new(@data)
       fare = fare_class.compute
@@ -84,6 +84,10 @@ class Comparison
     end * weeks
   end
 
+  def is_offpeak?
+    data.any? {|s| s[:mode] == 'train'} and data.first[:time]
+  end
+
   def record
     row = cheapest == 'Opal' ? 'Opal' : 'Non-Opal'
     if ENV['DATABASE_URL']
@@ -97,8 +101,13 @@ class Comparison
     else
       conn = PGconn.open(:dbname => 'app-dev')
     end
-    print "mode_string", mode_string
     conn.exec("UPDATE opal SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}' and mode='#{mode_string}';")
+    if is_offpeak?
+      am = data.first[:time][:am]
+      pm = data.first[:time][:pm]
+      conn.exec("UPDATE peak_stats SET count=count+1, sum=sum+#{savings(52)} WHERE am='#{am}' and pm='#{pm}';")
+    end
+
     total = 0
     conn.exec("SELECT name, SUM(count), SUM(sum) FROM opal GROUP BY name;") do |result|
       result.each_row do |row|
