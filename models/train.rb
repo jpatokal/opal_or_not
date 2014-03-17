@@ -26,7 +26,7 @@ class TrainSingle < Train
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "train"
+    if segment[:mode] == "train" and segment[:count] < 8
       super
     else
       nil
@@ -34,7 +34,7 @@ class TrainSingle < Train
   end
 end
 
-class TrainOffPeakReturn < TrainSingle
+class TrainOffPeakReturn < Train
   def name
     "MyTrain Off-Peak Returns"
   end
@@ -43,9 +43,13 @@ class TrainOffPeakReturn < TrainSingle
     [5.00, 6.20, 7.00, 9.20, 11.80]
   end
 
+  def off_peak?(segment)
+    segment[:mode] == "train" and segment[:time] and segment[:time][:am] == "after"
+  end
+
   def compute_segment(segment)
-    if segment[:mode] == "train" and segment[:time] and segment[:time][:am] == "after"
-      (single(segment) * segment[:count] * 50).to_i / 100.0
+    if off_peak?(segment)
+      super / 2  # super is a single fare, not returns
     else
       nil
     end
@@ -62,7 +66,7 @@ class TrainWeekly < Train
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "train"
+    if segment[:mode] == "train" and segment[:count] > 4
       single segment
     else
       nil

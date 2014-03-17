@@ -13,13 +13,14 @@ describe "integration" do
   describe "fares" do
     it "handles basic train zones correctly" do
       compare(
-        [{ :mode => "train", :zone => 1, :count => 10 }],
-        {"Opal"=>26.40, "MyTrain Weekly"=>28, "MyTrain Singles" => 38.0},
+        [{ :mode => "train", :zone => 1, :count => 6 }],
+        {"Opal"=>19.80, "MyTrain Weekly"=>28, "MyTrain Singles" => 22.80},
         ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
       compare(
         [{ :mode => "train", :zone => 5, :count => 10 }],
-        {"Opal"=>60, "MyTrain Weekly"=>61, "MyTrain Singles" => 86.0}
+        {"Opal"=>60, "MyTrain Weekly"=>61},
+        ["MyTrain Singles"]
       )
     end
 
@@ -31,12 +32,12 @@ describe "integration" do
       )
       compare(
         [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'after', :pm => 'after'} }],
-        {"Opal"=>18.48, "MyTrain Off-Peak Returns"=>25.0, "MyTrain Singles"=>38},
-        ["MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
+        {"Opal"=>18.48, "MyTrain Off-Peak Returns"=>25.0},
+        ["MyTrain Singles", "MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
       compare(
         [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'before', :pm => 'before'} }],
-        {"Opal"=>18.48, "MyTrain Weekly"=>28, "MyTrain Singles"=>38},
+        {"Opal"=>18.48, "MyTrain Weekly"=>28},
         ["MyTrain Off-Peak Returns", "MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
     end
