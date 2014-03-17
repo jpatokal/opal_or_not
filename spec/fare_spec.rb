@@ -8,6 +8,12 @@ describe Fare do
       fare.compute.should == 6
     end
 
+    it "rounds segments correctly" do
+      fare = Fare.new
+      stub(fare).single { 3.80 }
+      fare.compute_segment({:count => 6}).should == 22.8
+    end
+
     it "returns nil if there's a single nil segment" do
       fare = Fare.new
       stub(fare).compute_journey { [1, nil, 3] }
