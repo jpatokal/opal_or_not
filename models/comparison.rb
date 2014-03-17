@@ -105,7 +105,7 @@ class Comparison
     if is_offpeak?
       am = data.first[:time][:am]
       pm = data.first[:time][:pm]
-      conn.exec("UPDATE peak_stats SET count=count+1, sum=sum+#{savings(52)} WHERE am='#{am}' and pm='#{pm}';")
+      conn.exec("UPDATE peak_stats SET count=count+1, sum=sum+#{savings(52)} WHERE name='#{row}' and am='#{am}' and pm='#{pm}';")
     end
 
     total = 0
