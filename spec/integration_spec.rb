@@ -63,6 +63,11 @@ describe "integration" do
         {"Opal"=>54.4, "MyMulti Weekly"=>46}
       )
       compare(
+        [{ :mode => "train", :zone => 1, :count => 10, :cbd_distance => 23.4 },
+         { :mode => "bus",   :zone => 2, :count => 10 }],
+        {"Opal"=>54.4, "MyMulti Weekly"=>54}
+      )
+      compare(
         [{ :mode => "train", :zone => 1, :count => 10, :time => {:am => 'before', :pm => 'after'} },
          { :mode => "bus",   :zone => 2, :count => 10 }],
         {"Opal"=>46.48, "MyMulti Weekly"=>46}

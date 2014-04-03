@@ -24,6 +24,19 @@ class MyMulti < Fare
     raise "Undefined"
   end
 
+  def single segment
+    case segment[:cbd_distance]
+    when nil
+      super
+    when 0..10
+      zone[1]
+    when 10..35
+      zone[2]
+    else
+      zone[3]
+    end
+  end
+
   def compute_journey
     # Only compute MyMulti if there are multiple segments
     return [nil] if @data.length < 2
