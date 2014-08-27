@@ -37,6 +37,18 @@ describe Comparison do
     end
   end
 
+  describe '#still_available?' do
+    it "is up to date" do
+      comp = Comparison.new
+      comp.still_available?('Bus TravelTen').should be_true
+      comp.still_available?('MyMulti Weekly').should be_true
+      comp.still_available?('Ferry TravelTen').should be_false
+      comp.still_available?('MyTrain Weekly').should be_false
+      comp.still_available?('MyTrain Off-Peak Returns').should be_false
+    end
+  end
+
+
   describe 'when computing' do
     before :each do
       @comparison = Comparison.new()
@@ -52,7 +64,7 @@ describe Comparison do
 
   describe 'with results already computed' do
     before :each do
-      @comparison = Comparison.new([], {'Gopal' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
+      @comparison = Comparison.new([], {'GopalMonthly' => 30.30, 'Opal' => 10.10, 'Nopal' => 20.20})
     end
 
     describe '#cheapest' do
@@ -80,17 +92,17 @@ describe Comparison do
         @comparison.table.should == [
           ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
           ['Opal', 10.10, '#4582EC', '$10.10'],
-          ['Nopal', 20.20, 'gray', '$20.20'],
-          ['Gopal', 30.30, 'gray', '$30.30']
+          ['Nopal', 20.20, '#3FAD46', '$20.20'],
+          ['GopalMonthly', 30.30, 'gray', '$30.30']
         ]
       end
 
       it 'highlights both Opal and the lowest fare if different' do
-        Comparison.new([], {'Gopal' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
+        Comparison.new([], {'GopalMonthly' => 30.30, 'Opal' => 20.20, 'Nopal' => 10.10}).table.should == [
           ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ],
           ['Nopal', 10.10, '#3FAD46', '$10.10'],
           ['Opal', 20.20, '#4582EC', '$20.20'],
-          ['Gopal', 30.30, 'gray', '$30.30']
+          ['GopalMonthly', 30.30, 'gray', '$30.30']
         ]
       end
     end
@@ -99,6 +111,7 @@ describe Comparison do
       it 'returns processed fare information' do
         @comparison.result.should ==  {
           "winner"=>"Opal",
+          "winnerType"=>"Opal",
           "alternative"=>"Nopal",
           "savings"=>{
             "week"=>@comparison.savings(1),

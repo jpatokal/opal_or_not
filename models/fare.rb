@@ -43,14 +43,37 @@ class Fare
   end
 end
 
-class TravelTen < Fare
+class BusTravelTen < Fare
+  def name
+    "Bus TravelTen"
+  end
+
   def fare_table
     {
       "bus" => {
         1 => 1.84,
         2 => 2.96,
         3 => 3.68
-      },
+      }
+    }
+  end
+
+  def compute_segment(segment)
+    if segment[:mode] == "bus"
+      super
+    else
+      nil
+    end
+  end
+end
+
+class FerryTravelTen < Fare
+  def name
+    "Ferry TravelTen"
+  end
+
+  def fare_table
+    {
       "ferry" => {
         1 => 4.80,
         2 => 5.92
@@ -59,10 +82,10 @@ class TravelTen < Fare
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "train"
-      nil
-    else
+    if segment[:mode] == "ferry"
       super
+    else
+      nil
     end
   end
 end

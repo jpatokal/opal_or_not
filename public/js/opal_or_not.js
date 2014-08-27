@@ -86,11 +86,17 @@ function doSubmit() {
 
   jqXhr = $.post("/compute", jsonData).done( function(data) {
     json = JSON.parse(data);
-    if(json.winner == 'Opal') {
+    if(json.winnerType == 'Opal') {
       $(".opal-wins").removeClass('hidden');
+      $(".opal-no-choice").addClass('hidden');
+      $(".opal-loses").addClass('hidden');
+    } else if (json.winnerType == 'NoChoice') {
+      $(".opal-wins").addClass('hidden');
+      $(".opal-no-choice").removeClass('hidden');
       $(".opal-loses").addClass('hidden');
     } else {
       $(".opal-wins").addClass('hidden');
+      $(".opal-no-choice").addClass('hidden');
       $(".opal-loses").removeClass('hidden');
     }
     $('.winner').text(json.winner);

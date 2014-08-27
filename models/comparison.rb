@@ -31,7 +31,7 @@ class Comparison
   def fare_types
     [
       Opal,
-      TravelTen,
+      BusTravelTen, FerryTravelTen,
       TrainSingle, TrainOffPeakReturn, TrainWeekly, TrainMonthly, TrainQuarterly,
       MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly
     ]
@@ -55,12 +55,17 @@ class Comparison
       if fare.first == 'Opal'
         color = '#4582EC'
       else
-        color = (fare.first == cheapest) ? '#3FAD46' : 'gray'
+        color = still_available?(fare.first) ? '#3FAD46' : 'gray'
       end
       fare.push(color, "$%.02f" % fare.last)
     end
     fare_array.unshift ['Ticket', 'Weekly cost', { role: 'style' }, { role: 'annotation' } ]
     fare_array
+  end
+
+  def still_available?(name)
+    !(name.include? 'Monthly' or name.include? 'Quarterly' or name.include? 'Ferry' or
+      name.include? 'Off-Peak' or name.include? 'MyTrain Weekly')
   end
 
   def cheapest(allow_opal=true)
@@ -125,10 +130,20 @@ class Comparison
     self
   end
 
+  def winner_type
+    return "Opal" if cheapest == "Opal"
+    if still_available?(cheapest)
+      "Paper"
+    else
+      "NoChoice"
+    end
+  end
+
   def result
     {
       "winner" => cheapest,
       "alternative" => cheapest(false),
+      "winnerType" => winner_type,
       "savings" => {
         "week" => savings,
         "year" => savings(52)

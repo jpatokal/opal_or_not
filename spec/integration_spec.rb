@@ -45,14 +45,14 @@ describe "integration" do
     it "handles ferry-ferry combos correctly" do
       compare(
         [{ :mode => "ferry", :zone => 1, :count => 10 }, { :mode => "ferry", :zone => 1, :count => 10 }],
-        {"Opal"=>56, "MyMulti Weekly"=>54, "MyMulti Monthly"=>51.5, "MyMulti Quarterly"=>44.1, "TravelTen"=>96}
+        {"Opal"=>56, "MyMulti Weekly"=>54, "MyMulti Monthly"=>51.5, "MyMulti Quarterly"=>44.1, "Ferry TravelTen"=>96}
       )
     end
 
     it "handles bus-bus combos correctly" do
       compare(
         [{ :mode => "bus",   :zone => 3, :count => 10 }, { :mode => "bus",   :zone => 3, :count => 10 }],
-        {"Opal"=>36, "MyMulti Weekly"=>46, "TravelTen"=>73.6}
+        {"Opal"=>36, "MyMulti Weekly"=>46, "Bus TravelTen"=>73.6}
       )
     end
 
