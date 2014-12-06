@@ -18,6 +18,10 @@ class Opal < Fare
       "ferry" => {
         1 => 5.60,
         2 => 7.00
+      },
+      "light_rail" => {
+        1 => 2.10,
+        2 => 3.50
       }
     }
   end

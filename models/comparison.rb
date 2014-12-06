@@ -1,6 +1,7 @@
 require 'pg'
 
 require_relative 'opal'
+require_relative 'light_rail'
 require_relative 'my_multi'
 require_relative 'train'
 
@@ -32,6 +33,7 @@ class Comparison
     [
       Opal,
       BusTravelTen, FerryTravelTen,
+      LightRailSingle, LightRailReturn, LightRailWeekly,
       TrainSingle, TrainOffPeakReturn, TrainWeekly, TrainMonthly, TrainQuarterly,
       MyMultiWeekly, MyMultiMonthly, MyMultiQuarterly
     ]
