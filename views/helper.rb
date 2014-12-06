@@ -314,4 +314,33 @@ class Helper
       "Zig Zag"
     ]
   end
+
+  def self.light_rail_stations
+  [
+      "Central",
+      "Capitol Square",
+      "Paddy's Markets",
+      "Exhibition",
+      "Convention",
+      "Pyrmont Bay",
+      "The Star",
+      "John Street Square",
+      "Fish Market",
+      "Wentworth Park",
+      "Glebe",
+      "Jubilee Park",
+      "Rozelle Bay",
+      "Lilyfield",
+      "Leichhardt North",
+      "Hawthorne",
+      "Marion",
+      "Taverners Hill",
+      "Lewisham West",
+      "Waratah Mills",
+      "Arlington",
+      "Dulwich Grove",
+      "Dulwich Hill"
+    ]
+  end
+
 end

@@ -21,11 +21,15 @@ function hasTransfer() {
   return (! $('.segment-2').hasClass('hidden'));
 }
 
+function getMode(segment) {
+  return $('form ' + segment + ' .mode').val().replace(' ', '-');
+}
+
 // Update zone options when mode changes
 function selectModeHandler(segment) {
   $('form').on('change', segment + ' .mode', function() {
-    var selectedMode = $('form ' + segment + ' .mode').val();
-    ['bus', 'ferry', 'train'].map( function(mode) {
+    var selectedMode = getMode(segment);
+    ['bus', 'ferry', 'train', 'light-rail'].map( function(mode) {
       if(mode == selectedMode) {
         $(segment + ' .selector.' + mode).removeClass('hidden');
       } else {
@@ -36,29 +40,30 @@ function selectModeHandler(segment) {
 }
 selectModeHandler('.segment-1');
 selectModeHandler('.segment-2');
-$('form .segment-1 select.destination').val('Central (Sydney)');
+$('form .segment-1 .train select.destination').val('Central (Sydney)');
+$('form .segment-1 .light-rail select.destination').val('Dulwich Hill');
 
 // Compute fares
 $('form').on('click', 'button.compare', function() {
   $('.alert').addClass('hidden');
   $('button.compare').html('Calculating... <i class="fa fa-spinner fa-spin"/>').attr('disabled', true);
 
-  var mode1 = $('form .segment-1 .mode').val();
-  var mode2 = $('form .segment-2 .mode').val();
-  if(mode1 == 'train') {
-    if(hasTransfer() && mode2 == 'train') {
+  var mode1 = getMode('.segment-1');
+  var mode2 = getMode('.segment-2');
+  if(mode1 == 'train' || mode1 == 'light-rail') {
+    if(hasTransfer() && mode1 == mode2) {
       error('No need to specify train transfers, just enter origin and final destination.');
       return;
     }
     getTrainDistance(
-      $('form .segment-1 select.origin').val(),
-      $('form .segment-1 select.destination').val(), 1);
+      $('form .segment-1 .' + mode1 + ' select.origin').val(),
+      $('form .segment-1 .' + mode1 + ' select.destination').val(), 1);
     return; // async
   } else {
-    if(hasTransfer() && mode2 == 'train') {
+    if(hasTransfer() && (mode2 == 'train' || mode2 == 'light-rail')) {
       getTrainDistance(
-        $('form .segment-2 select.origin').val(),
-        $('form .segment-2 select.destination').val(), 2);
+        $('form .segment-2 .' + mode2 + ' select.origin').val(),
+        $('form .segment-2 .' + mode2 + ' select.destination').val(), 2);
       return; // async 
     }
   }
@@ -131,14 +136,19 @@ function goToByScroll(id){
 
 // This would make more sense to do in the backend, but Google's quotas are
 // much more generous for client-side JS requests.
-function getTrainDistance(origin, destination, segment) {
+function getTrainDistance(origin, destination, segment, mode) {
   // Tomorrow 9 AM, when train schedule is at its busiest
   var rushHour = new Date();
   rushHour.setDate(rushHour.getDate() + 1);
   rushHour.setHours(9,0,0,0);
+  if(mode == 'train') {
+    stationSuffix = " station, NSW"
+  } else {
+    stationSuffix = " Light Rail, NSW"
+  }
   var request = {
-      origin: origin + " station, NSW",
-      destination: destination + " station, NSW",
+      origin: origin + stationSuffix,
+      destination: destination + stationSuffix,
       transitOptions: {
         departureTime: rushHour
       },
@@ -155,7 +165,8 @@ function getTrainDistance(origin, destination, segment) {
           var mode = leg.steps[j].travel_mode;
           console.log(i, j, mode, leg.steps[j].instructions);
           if(mode == "TRANSIT") {
-            if(leg.steps[j].transit.line.vehicle.type != "HEAVY_RAIL") {
+            var type = leg.steps[j].transit.line.vehicle.type;
+            if(type != "HEAVY_RAIL" && type != 'light-rail') {
               validLeg = false;
             }
           }
@@ -170,13 +181,17 @@ function getTrainDistance(origin, destination, segment) {
       if(foundValidLeg) {
         var distance = response.routes[0].legs[i].distance.value / 1000;
         console.log('valid', i, distance);
-        // Add 2 km fudge factor for journeys to/from city core
-        // https://github.com/jpatokal/opal_or_not/issues/2
-        if(isCityStation(origin) || isCityStation(destination)) {
-          distance = distance + 2.0;
-          console.log('Adding fudge factor, new distance', distance);
+        if(mode == 'train') {
+          // Add 2 km fudge factor for journeys to/from city core
+          // https://github.com/jpatokal/opal_or_not/issues/2
+          if(isCityStation(origin) || isCityStation(destination)) {
+            distance = distance + 2.0;
+            console.log('Adding fudge factor, new distance', distance);
+          }
+          distanceToTrainZone(distance, segment);
+        } else {
+          distanceToLightRailZone(distance, segment);          
         }
-        distanceToTrainZone(distance, segment);
       } else {
         error("Sorry, couldn't work out a sensible route between those two stations.  <a href='/faq#trybus'>Try a bus instead?</a>");
       }
@@ -204,6 +219,17 @@ function distanceToTrainZone(distance, segment) {
     zone = 5;
   }
   $('form .segment-' + segment + ' .zone.train').val(zone);
+  doSubmit();
+}
+
+function distanceToLightRailZone(distance, segment) {
+  var zone;
+  if(distance < 3) {
+    zone = 1;
+  } else {
+    zone = 2;
+  }
+  $('form .segment-' + segment + ' .zone.light-rail').val(zone);
   doSubmit();
 }
 

@@ -41,6 +41,7 @@
                   %select.mode.form-control
                     %option bus
                     %option ferry
+                    %option light rail
                     %option{selected: "true"} train
                 .col-md-8.bus.selector.hidden
                   %label.col-md-2.control-label in&nbsp;zone
@@ -55,6 +56,18 @@
                     %select.zone.ferry.form-control
                       %option{value: 1} MyFerry 1
                       %option{value: 2} MyFerry 2
+                .col-md-8.light-rail.selector.hidden
+                  .row
+                    %label.col-md-1.control-label from
+                    .col-md-4
+                      %select.origin.form-control
+                        - Helper.light_rail_stations.each do |station|
+                          %option= station
+                    %label.col-md-1.control-label to
+                    .col-md-4
+                      %select.destination.form-control
+                        - Helper.light_rail_stations.each do |station|
+                          %option= station
                 .col-md-8.train.selector
                   .row
                     %label.col-md-1.control-label from
@@ -88,6 +101,7 @@
                   %select.mode.form-control
                     %option{selected: "true"} bus
                     %option ferry
+                    %option light rail
                     %option train
                 .col-md-8.bus.selector
                   %label.col-md-2.control-label in&nbsp;zone
@@ -102,6 +116,18 @@
                     %select.zone.ferry.form-control
                       %option{value: 1} MyFerry 1
                       %option{value: 2} MyFerry 2
+                .col-md-8.light-rail.selector.hidden
+                  .row
+                    %label.col-md-1.control-label from
+                    .col-md-4
+                      %select.origin.form-control
+                        - Helper.light_rail_stations.each do |station|
+                          %option= station
+                    %label.col-md-1.control-label to
+                    .col-md-4
+                      %select.destination.form-control
+                        - Helper.light_rail_stations.each do |station|
+                          %option= station
                 .col-md-8.train.selector.hidden
                   .row
                     %label.col-md-1.control-label from
