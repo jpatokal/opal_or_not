@@ -1,0 +1,7 @@
+case $(((`date "+%W"`+2)%4)) in
+  0) echo "maps = Kosuke, earth = Jani";;
+  1) echo "maps = Kosuke, earth = Jani";;
+  2) echo "maps = Jani, earth = Kosuke";;
+  3) echo "maps = Jani, earth = Kosuke";;
+esac
+
