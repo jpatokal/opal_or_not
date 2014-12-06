@@ -5,13 +5,9 @@ CREATE TABLE modes (
 INSERT INTO modes(mode) VALUES
 	('bus'),
 	('bus+ferry'),
-	('bus+light-rail'),
 	('bus+train'),
 	('ferry'),
-	('ferry+light-rail'),
 	('ferry+train'),
-	('light-rail'),
-	('light-rail+train'),
 	('train'),
 	('unknown');
 
