@@ -44,12 +44,12 @@ describe "integration" do
 
     it "handles basic light rail zones correctly" do
       compare(
-        [{ :mode => "light_rail", :zone => 1, :count => 6 }],
+        [{ :mode => "light-rail", :zone => 1, :count => 6 }],
         {"Opal"=>12.60, "Light Rail Returns"=>15, "Light Rail Singles" => 21.60},
         ["Light Rail Weekly", "MyMulti Weekly", "MyMulti Monthly", "MyMulti Quarterly"]
       )
       compare(
-        [{ :mode => "light_rail", :zone => 2, :count => 10 }],
+        [{ :mode => "light-rail", :zone => 2, :count => 10 }],
         {"Light Rail Weekly"=>23, "Opal"=>28, "Light Rail Returns"=>31},
         ["Light Rail Singles"]
       )
@@ -90,12 +90,12 @@ describe "integration" do
     it "handles light rail-bus/train combos correctly" do
       compare(
         [{ :mode => "bus",          :zone => 1, :count => 10 },
-         { :mode => "light_rail",   :zone => 2, :count => 10 }],
+         { :mode => "light-rail",   :zone => 2, :count => 10 }],
         {"Opal"=>44.8, "MyMulti Weekly"=>46}
       )
       compare(
         [{ :mode => "train",        :zone => 1, :count => 10 },
-         { :mode => "light_rail",   :zone => 2, :count => 10 }],
+         { :mode => "light-rail",   :zone => 2, :count => 10 }],
         {"Opal"=>54.4, "MyMulti Weekly"=>46}
       )
     end

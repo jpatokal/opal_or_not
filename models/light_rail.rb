@@ -5,7 +5,7 @@ class LightRail < Fare
 
   def fare_table
     {
-      "light_rail" => {
+      "light-rail" => {
         1 => zone[0],
         2 => zone[1]
       },
@@ -23,7 +23,7 @@ class LightRailSingle < LightRail
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "light_rail" and segment[:count] < 8
+    if segment[:mode] == "light-rail" and segment[:count] < 8
       super
     else
       nil
@@ -45,7 +45,7 @@ class LightRailReturn < LightRail
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "light_rail"
+    if segment[:mode] == "light-rail"
       super / 2  # super is a single fare, not returns
     else
       nil
@@ -63,7 +63,7 @@ class LightRailWeekly < LightRail
   end
 
   def compute_segment(segment)
-    if segment[:mode] == "light_rail" and segment[:count] > 4
+    if segment[:mode] == "light-rail" and segment[:count] > 4
       single segment
     else
       nil

@@ -17,7 +17,7 @@ class MyMulti < Fare
         1 => zone[2],
         2 => zone[3]
       },
-      "light_rail" => {
+      "light-rail" => {
         1 => zone[1],
         2 => zone[1]
       },

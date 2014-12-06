@@ -19,7 +19,7 @@ class Opal < Fare
         1 => 5.60,
         2 => 7.00
       },
-      "light_rail" => {
+      "light-rail" => {
         1 => 2.10,
         2 => 3.50
       }
