@@ -11,6 +11,11 @@ var cityStations = [
   'Martin Place', 'Kings Cross', 'St. James', 'Museum'
 ];
 
+var lightRailZone1 = [
+  'Central', 'Capitol Square', 'Paddy\'s Markets',
+  'Exhibition', 'Convention', 'Pyrmont Bay'
+];
+
 // Open/close second trip segment
 $('form').on('click', 'button.transfer', function() {
 	$('.segment-2').toggleClass('hidden');
@@ -72,7 +77,7 @@ $('form').on('click', 'button.compare', function() {
 });
 
 function collectData(segment) {
-  var mode = $('form ' + segment + ' .mode').val();
+  var mode = getMode(segment);
   return { "mode": mode,
            "zone": $('form ' + segment + ' .zone.' + mode).val(),
            "count": $('form .count').val(),
@@ -87,6 +92,7 @@ function doSubmit() {
   if(hasTransfer()) {
     data.push(collectData('.segment-2'));
   }
+  console.log(data);
   jsonData = JSON.stringify(data);
 
   jqXhr = $.post("/compute", jsonData).done( function(data) {
@@ -166,7 +172,7 @@ function getTrainDistance(origin, destination, segment, mode) {
           console.log(i, j, mode, leg.steps[j].instructions);
           if(mode == "TRANSIT") {
             var type = leg.steps[j].transit.line.vehicle.type;
-            if(type != "HEAVY_RAIL" && type != 'light-rail') {
+            if(type != "HEAVY_RAIL" && type != 'TRAM') {
               validLeg = false;
             }
           }
@@ -224,7 +230,7 @@ function distanceToTrainZone(distance, segment) {
 
 function distanceToLightRailZone(distance, segment) {
   var zone;
-  if(distance < 3) {
+  if(distance < 3.0) {
     zone = 1;
   } else {
     zone = 2;
