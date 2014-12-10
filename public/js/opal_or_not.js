@@ -80,6 +80,7 @@ function collectData(segment) {
   var mode = getMode(segment);
   return { "mode": mode,
            "zone": $('form ' + segment + ' .zone.' + mode).val(),
+           "paper-zone": $('form ' + segment + ' .paper-zone.' + mode).val(),
            "count": $('form .count').val(),
            "time": {
              "am": $('form ' + segment + ' .am').val(),
@@ -196,7 +197,7 @@ function getTrainDistance(origin, destination, segment, mode) {
           }
           distanceToTrainZone(distance, segment);
         } else {
-          distanceToLightRailZone(distance, segment);          
+          computeLightRailZones(origin, destination, distance, segment);          
         }
       } else {
         error("Sorry, couldn't work out a sensible route between those two stations.  <a href='/faq#trybus'>Try a bus instead?</a>");
@@ -209,6 +210,10 @@ function getTrainDistance(origin, destination, segment, mode) {
 
 function isCityStation(name) {
   return ($.inArray(name, cityStations) > -1);
+}
+
+function isLightRailZone1Station(name) {
+  return ($.inArray(name, lightRailZone1) > -1);
 }
 
 function distanceToTrainZone(distance, segment) {
@@ -228,14 +233,23 @@ function distanceToTrainZone(distance, segment) {
   doSubmit();
 }
 
-function distanceToLightRailZone(distance, segment) {
-  var zone;
-  if(distance < 3.0) {
-    zone = 1;
+function computeLightRailZones(origin, destination, distance, segment) {
+  var zones, paperZone, opalZone;
+  // it's a two-zone ticket if station1 XOR station2 are in zone 1
+  if(isLightRailZone1Station(origin) != isLightRailZone1Station(destination)) {
+    paperZone = 2;
   } else {
-    zone = 2;
+    paperZone = 1;
   }
-  $('form .segment-' + segment + ' .zone.light-rail').val(zone);
+  if(distance > 3.0) {
+    opalZone = 2;
+  } else {
+    opalZone = 1;
+  }
+  zones = paperZone + ',' + opalZone;
+  console.log("Light rail zones: paper " + paperZone + ", Opal " + opalZone);
+  $('form .segment-' + segment + ' .zone.light-rail').val(opalZone);
+  $('form .segment-' + segment + ' .paper-zone.light-rail').val(paperZone);
   doSubmit();
 }
 
