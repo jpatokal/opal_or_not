@@ -12,7 +12,7 @@ class Comparison
     @options = options
     @data = data.map do |hash|
       hash = str_to_sym hash
-      [:count, :zone].each do |key|
+      [:count, :zone, :paper_zone].each do |key|
         hash[key] = hash[key].to_i if hash[key]
       end
       hash[:time] = str_to_sym(hash[:time]) if hash[:time]
@@ -22,7 +22,7 @@ class Comparison
   end
 
   def str_to_sym hash
-    hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+    hash.inject({}){|memo,(k,v)| memo[k.to_s.gsub('-', '_').to_sym] = v; memo}
   end
 
   def mode_string

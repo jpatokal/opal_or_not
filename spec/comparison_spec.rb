@@ -18,6 +18,12 @@ describe Comparison do
       comparison.data.should == [{:mode => "a", :zombie => "b", :time => {:am => "first", :pm => "last"}}]
     end
 
+    it "converts dash into underscore" do
+      data = [{"paper-zone" => "3"}]
+      comparison = Comparison.new(data)
+      comparison.data.should == [{:paper_zone => 3}]
+    end
+
     it "converts count, zone into numbers" do
       data = [{:mode => "z", :count => "69", :zone => "42"}]
       comparison = Comparison.new(data)

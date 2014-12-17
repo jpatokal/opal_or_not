@@ -1,13 +1,26 @@
 class LightRail < Fare
   def zone
+    raise "Light rail requires paper_zone"
+  end
+
+  def paper_zone
     raise "Undefined"
+  end
+
+  def single(segment)
+    begin
+      fare_table[segment[:mode]][segment[:paper_zone]] ||
+        (raise "No fare found in class #{self.class.name} for segment #{segment}, zone mismatch")
+    rescue
+      raise "No fare found in class #{self.class.name} for segment #{segment}, mode mismatch"
+    end
   end
 
   def fare_table
     {
       "light-rail" => {
-        1 => zone[0],
-        2 => zone[1]
+        1 => paper_zone[0],
+        2 => paper_zone[1]
       },
     }
   end
@@ -18,7 +31,7 @@ class LightRailSingle < LightRail
     "Light Rail Singles"
   end
 
-  def zone
+  def paper_zone
     [3.60, 4.60]
   end
 
@@ -36,12 +49,8 @@ class LightRailReturn < LightRail
     "Light Rail Returns"
   end
 
-  def zone
+  def paper_zone
     [5.00, 6.20]
-  end
-
-  def off_peak?(segment)
-    segment[:mode] == "train" and segment[:time] and segment[:time][:am] == "after"
   end
 
   def compute_segment(segment)
@@ -58,7 +67,7 @@ class LightRailWeekly < LightRail
     "Light Rail Weekly"
   end
 
-  def zone
+  def paper_zone
     [23, 23]
   end
 
