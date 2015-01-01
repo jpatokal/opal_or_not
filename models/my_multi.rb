@@ -62,7 +62,7 @@ class MyMultiWeekly < MyMulti
   end
 
   def zone
-    [0, 46, 54, 63]
+    [0, 48, 56, 65]
   end
 end
 

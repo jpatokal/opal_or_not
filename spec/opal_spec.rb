@@ -26,7 +26,9 @@ describe Opal do
   end
 
   it "applies off-peak discounts when applicable" do
-    FULL_FARE, ONE_DISCOUNT, TWO_DISCOUNTS = [4.70 * 2, 4.70 + 3.29, 3.29 * 2].map {|x| x * 3}
+    NORMAL = Opal.new.fare_table["train"][3]
+    DISCOUNTED = NORMAL * 0.7
+    FULL_FARE, ONE_DISCOUNT, TWO_DISCOUNTS = [NORMAL * 2, NORMAL + DISCOUNTED, DISCOUNTED * 2].map {|x| x * 3}
     time_combos = [
       [{:am => 'before', :pm => 'before'}, TWO_DISCOUNTS],
       [{:am => 'before', :pm => 'peak'},   ONE_DISCOUNT],

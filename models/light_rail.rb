@@ -32,7 +32,7 @@ class LightRailSingle < LightRail
   end
 
   def paper_zone
-    [3.60, 4.60]
+    [3.80, 4.80]
   end
 
   def compute_segment(segment)
@@ -50,7 +50,7 @@ class LightRailReturn < LightRail
   end
 
   def paper_zone
-    [5.00, 6.20]
+    [5.20, 6.40]
   end
 
   def compute_segment(segment)
@@ -68,7 +68,7 @@ class LightRailWeekly < LightRail
   end
 
   def paper_zone
-    [23, 23]
+    [24, 24]
   end
 
   def compute_segment(segment)

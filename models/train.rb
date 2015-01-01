@@ -22,7 +22,7 @@ class TrainSingle < Train
   end
 
   def zone
-    [3.80, 4.60, 5.20, 6.80, 8.60]
+    [4.00, 4.80, 5.40, 7.00, 8.80]
   end
 
   def compute_segment(segment)
