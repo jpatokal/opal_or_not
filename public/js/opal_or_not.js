@@ -62,13 +62,13 @@ $('form').on('click', 'button.compare', function() {
     }
     getTrainDistance(
       $('form .segment-1 .' + mode1 + ' select.origin').val(),
-      $('form .segment-1 .' + mode1 + ' select.destination').val(), 1);
+      $('form .segment-1 .' + mode1 + ' select.destination').val(), 1, mode1);
     return; // async
   } else {
     if(hasTransfer() && (mode2 == 'train' || mode2 == 'light-rail')) {
       getTrainDistance(
         $('form .segment-2 .' + mode2 + ' select.origin').val(),
-        $('form .segment-2 .' + mode2 + ' select.destination').val(), 2);
+        $('form .segment-2 .' + mode2 + ' select.destination').val(), 2, mode2);
       return; // async 
     }
   }
